@@ -1,6 +1,6 @@
 {
-  "versionCode": 7,
-  "versionName": "2.5",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.5/MoreTube.apk",
-  "notes": "Shorts work in Watch together. Chat button in the top bar; messages float in and fade. Cleaner watch page. No full-screen keyboard when chatting in landscape."
+  "versionCode": 8,
+  "versionName": "2.6",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.6/MoreTube.apk",
+  "notes": "Live chat like YouTube's: fills the space under the video in portrait, a column beside it in full screen."
 }
