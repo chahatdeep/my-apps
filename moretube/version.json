@@ -1,6 +1,6 @@
 {
-  "versionCode": 15,
-  "versionName": "3.3",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.3/MoreTube.apk",
-  "notes": "Room queue: tap + Queue on any video and the room plays them in order. GIFs and stickers from your keyboard now work in chat."
+  "versionCode": 16,
+  "versionName": "3.4",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.4/MoreTube.apk",
+  "notes": "Pulling down on the page below the video opens full screen standing up (fixed for real fingers)."
 }
