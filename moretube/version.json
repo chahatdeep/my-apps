@@ -1,6 +1,6 @@
 {
-  "versionCode": 8,
-  "versionName": "2.6",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.6/MoreTube.apk",
-  "notes": "Live chat like YouTube's: fills the space under the video in portrait, a column beside it in full screen."
+  "versionCode": 9,
+  "versionName": "2.7",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.7/MoreTube.apk",
+  "notes": "Fixes scrolling on the watch page: the video stays pinned at the top again."
 }
