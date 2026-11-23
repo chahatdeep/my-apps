@@ -1,6 +1,6 @@
 {
-  "versionCode": 39,
-  "versionName": "5.7",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.7/MoreTube.apk",
-  "notes": "Restarting MoreTube now always checks for a new version."
+  "versionCode": 40,
+  "versionName": "5.8",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.8/MoreTube.apk",
+  "notes": "A test release to check that new versions are offered automatically. Nothing else changes."
 }
