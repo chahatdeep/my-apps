@@ -1,6 +1,6 @@
 {
-  "versionCode": 34,
-  "versionName": "5.2",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.2/MoreTube.apk",
-  "notes": "Share now has Copy. Fixes: search page, Shorts top bar and captions, Back in Curious, captions over the seek bar, flicking the mini player away, and more."
+  "versionCode": 35,
+  "versionName": "5.3",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.3/MoreTube.apk",
+  "notes": "Curious now plays Shorts from 200 hand-picked science channels (3Blue1Brown, Veritasium, PBS Space Time, Steve Mould, Practical Engineering and more)."
 }
