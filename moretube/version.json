@@ -1,6 +1,6 @@
 {
-  "versionCode": 22,
-  "versionName": "4.0",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.0/MoreTube.apk",
-  "notes": "Shorts: drag sideways along the bottom to scrub a playing Short, like the YouTube app."
+  "versionCode": 23,
+  "versionName": "4.1",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.1/MoreTube.apk",
+  "notes": "Scrubbing a Short shows one bar, right where YouTube's own line is."
 }
