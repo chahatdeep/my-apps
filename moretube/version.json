@@ -1,6 +1,6 @@
 {
-  "versionCode": 14,
-  "versionName": "3.2",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.2/MoreTube.apk",
-  "notes": "Emoji reactions float up over the video for everyone. Joining a room shows what was said before you came in."
+  "versionCode": 15,
+  "versionName": "3.3",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.3/MoreTube.apk",
+  "notes": "Room queue: tap + Queue on any video and the room plays them in order. GIFs and stickers from your keyboard now work in chat."
 }
