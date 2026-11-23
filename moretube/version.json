@@ -1,6 +1,6 @@
 {
-  "versionCode": 9,
-  "versionName": "2.7",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.7/MoreTube.apk",
-  "notes": "Fixes scrolling on the watch page: the video stays pinned at the top again."
+  "versionCode": 10,
+  "versionName": "2.8",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.8/MoreTube.apk",
+  "notes": "Send GIFs and stickers in Watch together chat (from your keyboard, or the + button). The video now stands apart from everything below it."
 }
