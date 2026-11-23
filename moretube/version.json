@@ -1,6 +1,6 @@
 {
-  "versionCode": 29,
-  "versionName": "4.7",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.7/MoreTube.apk",
-  "notes": "Updates: no more getting stuck on Installing if the confirmation is closed; a way around Play Protect blocks; faster update checks."
+  "versionCode": 30,
+  "versionName": "4.8",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.8/MoreTube.apk",
+  "notes": "Updates open Android's install confirmation reliably (with an Install button if it doesn't pop up)."
 }
