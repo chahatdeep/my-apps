@@ -1,6 +1,6 @@
 {
-  "versionCode": 6,
-  "versionName": "2.4",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.4/MoreTube.apk",
-  "notes": "Joining mid-video catches up instantly. Skips, pauses and speed from anyone stay in sync. Resizable mini player. Chat strip, side-by-side chat in full screen. Smoother motion."
+  "versionCode": 7,
+  "versionName": "2.5",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.5/MoreTube.apk",
+  "notes": "Shorts work in Watch together. Chat button in the top bar; messages float in and fade. Cleaner watch page. No full-screen keyboard when chatting in landscape."
 }
