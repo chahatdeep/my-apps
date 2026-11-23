@@ -1,6 +1,6 @@
 {
-  "versionCode": 11,
-  "versionName": "2.0",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v2.0/MoreTubeTV.apk",
-  "notes": "Updating is more reliable: no more waiting forever on the install step."
+  "versionCode": 12,
+  "versionName": "2.1",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v2.1/MoreTubeTV.apk",
+  "notes": "New versions are now offered when you come back to MoreTube TV, not only when it starts fresh."
 }
