@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MoreTube</title>
+<meta name="description" content="MoreTube: YouTube without ads, with background play and Watch Together. Download for Android phones and TVs.">
+<meta name="theme-color" content="#0f0f0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='26' fill='%23ff0033'/%3E%3Crect x='30' y='26' width='48' height='8' rx='4' fill='%23ffc2cd'/%3E%3Crect x='24' y='36' width='60' height='8' rx='4' fill='%23ff8a9f'/%3E%3Crect x='18' y='47' width='72' height='44' rx='12' fill='%23fff'/%3E%3Cpath d='M47 59v20l18-10z' fill='%23ff0033'/%3E%3C/svg%3E">
+<style>
+  :root { --bg:#0f0f0f; --card:#1a1a1d; --line:rgba(255,255,255,.08); --text:#f2f2f4; --dim:#a8a8ad; --red:#ff0033; --red2:#ff3355; }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--text); font:16px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif; min-height:100vh; display:flex; justify-content:center; padding:48px 16px 64px; }
+  main { width:100%; max-width:460px; }
+  .hero { text-align:center; animation:rise .6s cubic-bezier(.2,0,0,1) both; }
+  .logo { width:96px; height:96px; filter:drop-shadow(0 12px 32px rgba(255,0,51,.35)); }
+  h1 { font-size:36px; letter-spacing:-.02em; margin-top:18px; }
+  .tag { color:var(--dim); margin-top:6px; }
+  .cards { margin-top:32px; display:grid; gap:12px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:20px; display:flex; align-items:center; gap:16px; animation:rise .6s cubic-bezier(.2,0,0,1) both; }
+  .card:nth-child(2) { animation-delay:.08s; }
+  .card .ico { width:44px; height:44px; border-radius:14px; background:rgba(255,51,85,.12); display:grid; place-items:center; flex:none; }
+  .card .what { flex:1; min-width:0; }
+  .card b { display:block; font-size:17px; }
+  .card small { color:var(--dim); font-size:13px; }
+  .btn { background:var(--red); color:#fff; text-decoration:none; font-weight:600; font-size:15px; padding:11px 18px; border-radius:999px; white-space:nowrap; transition:transform .15s, background .2s; }
+  .btn:hover { background:var(--red2); } .btn:active { transform:scale(.95); }
+  h2 { font-size:15px; color:var(--red2); margin:36px 4px 10px; letter-spacing:.02em; }
+  ol { list-style:none; counter-reset:s; display:grid; gap:10px; }
+  ol li { counter-increment:s; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px 16px 14px 56px; position:relative; color:var(--dim); font-size:15px; }
+  ol li::before { content:counter(s); position:absolute; left:16px; top:13px; width:26px; height:26px; border-radius:50%; background:var(--red); color:#fff; font-weight:700; font-size:14px; display:grid; place-items:center; }
+  ol li b { color:var(--text); font-weight:600; }
+  .feat { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px; }
+  .feat span { border:1px solid var(--line); border-radius:999px; padding:6px 12px; font-size:13px; color:var(--dim); }
+  footer { text-align:center; color:#6e6e73; font-size:13px; margin-top:36px; }
+  footer a { color:var(--dim); }
+  @keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  @media (max-width:380px) { .card { flex-wrap:wrap; } .btn { width:100%; text-align:center; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="hero">
+    <svg class="logo" viewBox="0 0 108 108" aria-hidden="true">
+      <rect width="108" height="108" rx="26" fill="#ff0033"/>
+      <rect x="30" y="26" width="48" height="8" rx="4" fill="#ffc2cd"/>
+      <rect x="24" y="36" width="60" height="8" rx="4" fill="#ff8a9f"/>
+      <rect x="18" y="47" width="72" height="44" rx="12" fill="#fff"/>
+      <path d="M47 59v20l18-10z" fill="#ff0033"/>
+    </svg>
+    <h1>MoreTube</h1>
+    <p class="tag">YouTube, without the ads. Watch together with friends.</p>
+    <div class="feat"><span>No ads</span><span>Background play</span><span>Watch together + chat</span><span>Skips sponsors</span></div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff3355" stroke-width="2" stroke-linecap="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+      <div class="what"><b>Android phone</b><small id="phone-v">Latest version</small></div>
+      <a class="btn" id="phone" href="https://github.com/chahatdeep/my-apps/releases">Download</a>
+    </div>
+    <div class="card">
+      <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff3355" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="13" rx="3"/><path d="M8 21h8"/></svg></div>
+      <div class="what"><b>Android / Google TV</b><small id="tv-v">Latest version</small></div>
+      <a class="btn" id="tv" href="https://github.com/chahatdeep/my-apps/releases">Download</a>
+    </div>
+  </div>
+
+  <h2>INSTALLING</h2>
+  <ol>
+    <li><b>Download</b> on the phone (or TV) you'll use it on.</li>
+    <li><b>Open the file.</b> Android asks once to allow installs from your browser: allow it, then tap Install.</li>
+    <li><b>That's it.</b> New versions come from inside the app: it offers them when they're out.</li>
+  </ol>
+
+  <h2>WATCH TOGETHER</h2>
+  <ol>
+    <li>Tap the <b>people icon</b> at the top right and <b>start a room</b>.</li>
+    <li>Friends <b>type the 4-digit code</b>, and everyone sees the same moment, play, pause, skip, and chat.</li>
+    <li>Tap <b>Add friend</b> next to someone, and you can invite each other any time.</li>
+  </ol>
+
+  <footer>Not affiliated with YouTube or Google. · <a href="https://github.com/chahatdeep/my-apps/releases">All releases</a></footer>
+</main>
+<script>
+  // always the newest build: the same version files the apps check for updates
+  [['phone', 'moretube'], ['tv', 'moretube-tv']].forEach(function (p) {
+    fetch('https://raw.githubusercontent.com/chahatdeep/my-apps/main/' + p[1] + '/version.json?t=' + Date.now())
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        document.getElementById(p[0]).href = j.apk;
+        document.getElementById(p[0] + '-v').textContent = 'Version ' + j.versionName;
+      }).catch(function () {});
+  });
+</script>
+</body>
+</html>
