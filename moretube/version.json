@@ -1,6 +1,6 @@
 {
-  "versionCode": 23,
-  "versionName": "4.1",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.1/MoreTube.apk",
-  "notes": "Scrubbing a Short shows one bar, right where YouTube's own line is."
+  "versionCode": 24,
+  "versionName": "4.2",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.2/MoreTube.apk",
+  "notes": "Shorts: a see-through top bar like the YouTube app, a full-width scrub bar, and no tabs in the floating window."
 }
