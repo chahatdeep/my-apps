@@ -1,6 +1,6 @@
 {
-  "versionCode": 10,
-  "versionName": "1.9",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v1.9/MoreTubeTV.apk",
-  "notes": "Updates: faster checks, and no more getting stuck if the install confirmation is closed."
+  "versionCode": 11,
+  "versionName": "2.0",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v2.0/MoreTubeTV.apk",
+  "notes": "Updating is more reliable: no more waiting forever on the install step."
 }
