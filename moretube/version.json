@@ -1,6 +1,6 @@
 {
-  "versionCode": 21,
-  "versionName": "3.9",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.9/MoreTube.apk",
-  "notes": "Shorts: swiping up or down from the bottom of the screen (the progress bar or the tabs) changes the Short, like the YouTube app."
+  "versionCode": 22,
+  "versionName": "4.0",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.0/MoreTube.apk",
+  "notes": "Shorts: drag sideways along the bottom to scrub a playing Short, like the YouTube app."
 }
