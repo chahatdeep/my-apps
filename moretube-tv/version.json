@@ -1,6 +1,6 @@
 {
-  "versionCode": 12,
-  "versionName": "2.1",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v2.1/MoreTubeTV.apk",
-  "notes": "New versions are now offered when you come back to MoreTube TV, not only when it starts fresh."
+  "versionCode": 13,
+  "versionName": "2.2",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v2.2/MoreTubeTV.apk",
+  "notes": "Restarting MoreTube TV now always checks for a new version."
 }
