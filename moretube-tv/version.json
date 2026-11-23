@@ -1,6 +1,6 @@
 {
-  "versionCode": 3,
-  "versionName": "1.2",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v1.2/MoreTubeTV.apk",
-  "notes": "Live chat in Watch together: messages from the room float over the video; reply with reactions or a message."
+  "versionCode": 4,
+  "versionName": "1.3",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v1.3/MoreTubeTV.apk",
+  "notes": "Watch together connects through all relays at once, so phones and TVs always find each other."
 }
