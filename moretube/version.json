@@ -1,6 +1,6 @@
 {
-  "versionCode": 16,
-  "versionName": "3.4",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.4/MoreTube.apk",
-  "notes": "Pulling down on the page below the video opens full screen standing up (fixed for real fingers)."
+  "versionCode": 17,
+  "versionName": "3.5",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.5/MoreTube.apk",
+  "notes": "Pull-down full screen stays put (it was closing itself when the phone was upright). Play/pause button always matches the video."
 }
