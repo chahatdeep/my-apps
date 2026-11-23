@@ -26,10 +26,17 @@
   .btn { background:var(--red); color:#fff; text-decoration:none; font-weight:600; font-size:15px; padding:11px 18px; border-radius:999px; white-space:nowrap; transition:transform .15s, background .2s; }
   .btn:hover { background:var(--red2); } .btn:active { transform:scale(.95); }
   h2 { font-size:15px; color:var(--red2); margin:36px 4px 10px; letter-spacing:.02em; }
-  ol { list-style:none; counter-reset:s; display:grid; gap:10px; }
+  ol { list-style:none; padding:0; counter-reset:s; display:grid; gap:10px; }
   ol li { counter-increment:s; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px 16px 14px 56px; position:relative; color:var(--dim); font-size:15px; }
   ol li::before { content:counter(s); position:absolute; left:16px; top:13px; width:26px; height:26px; border-radius:50%; background:var(--red); color:#fff; font-weight:700; font-size:14px; display:grid; place-items:center; }
   ol li b { color:var(--text); font-weight:600; }
+  .note { color:var(--dim); font-size:14px; margin:0 4px 10px; }
+  .mock { margin:12px auto 0; max-width:320px; background:#26262a; border-radius:22px; padding:18px 18px 12px; box-shadow:0 12px 32px rgba(0,0,0,.45); }
+  .mock-t { font-weight:600; font-size:16px; }
+  .mock-s { color:var(--dim); font-size:13px; margin-top:6px; }
+  .mock-d { color:#8ab4f8; font-size:14px; margin-top:12px; }
+  .mock-b { display:flex; justify-content:flex-end; gap:18px; margin-top:14px; font-size:14px; color:#8ab4f8; }
+  .mock-b .hi { outline:2px solid var(--red); outline-offset:6px; border-radius:6px; }
   .feat { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px; }
   .feat span { border:1px solid var(--line); border-radius:999px; padding:6px 12px; font-size:13px; color:var(--dim); }
   footer { text-align:center; color:#6e6e73; font-size:13px; margin-top:36px; }
@@ -73,6 +80,20 @@
     <li><b>That's it.</b> New versions come from inside the app: it offers them when they're out.</li>
   </ol>
 
+  <h2>IF ANDROID WARNS YOU</h2>
+  <p class="note">Google Play Protect warns about apps that don't come from the Play Store, so MoreTube may be called "unsafe" or "harmful". You can still install it:</p>
+  <ol>
+    <li>On the warning, tap <b>More details</b> (or the small <b>&#8964;</b> arrow).</li>
+    <li>Tap <b>Install anyway</b>. If it asks to send the app for a scan, either choice is fine.</li>
+    <li>No <b>Install anyway</b>, only <b>OK</b>? In the <b>Play Store</b>, tap your profile picture → <b>Play Protect</b> → the <b>gear</b>, and turn off <b>Scan apps with Play Protect</b> just while you install. Turn it back on afterwards.</li>
+  </ol>
+  <div class="mock" aria-hidden="true">
+    <div class="mock-t">Unsafe app blocked</div>
+    <div class="mock-s">Play Protect doesn't recognise this app's developer…</div>
+    <div class="mock-d">More details <span>&#8964;</span></div>
+    <div class="mock-b"><span>OK</span><span class="hi">Install anyway</span></div>
+  </div>
+
   <h2>WATCH TOGETHER</h2>
   <ol>
     <li>Tap the <b>people icon</b> at the top right and <b>start a room</b>.</li>
@@ -85,7 +106,7 @@
 <script>
   // always the newest build: the same version files the apps check for updates
   [['phone', 'moretube'], ['tv', 'moretube-tv']].forEach(function (p) {
-    fetch('https://raw.githubusercontent.com/chahatdeep/my-apps/main/' + p[1] + '/version.json?t=' + Date.now())
+    fetch('https://chahatdeep.github.io/my-apps/' + p[1] + '/version.json?t=' + Date.now())
       .then(function (r) { return r.json(); })
       .then(function (j) {
         document.getElementById(p[0]).href = j.apk;
