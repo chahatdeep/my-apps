@@ -1,6 +1,6 @@
 {
-  "versionCode": 4,
-  "versionName": "2.2",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.2/MoreTube.apk",
-  "notes": "Live chat in Watch together. Add friends and invite them even when their MoreTube is closed."
+  "versionCode": 5,
+  "versionName": "2.3",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.3/MoreTube.apk",
+  "notes": "Watch together connects through all relays at once, so phones and TVs always find each other."
 }
