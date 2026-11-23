@@ -1,6 +1,6 @@
 {
-  "versionCode": 11,
-  "versionName": "2.9",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.9/MoreTube.apk",
-  "notes": "Pull the page down for full screen standing up, like the YouTube app. The video casts a shadow over the list as you scroll. GIF and sticker names show properly."
+  "versionCode": 12,
+  "versionName": "3.0",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.0/MoreTube.apk",
+  "notes": "Pulling the page down now reliably opens full screen standing up; swipe up or down to come back."
 }
