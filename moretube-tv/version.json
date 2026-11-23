@@ -1,6 +1,6 @@
 {
-  "versionCode": 5,
-  "versionName": "1.4",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v1.4/MoreTubeTV.apk",
-  "notes": "Joining a room mid-video now catches up right away. Watch together uses all relays at once."
+  "versionCode": 6,
+  "versionName": "1.5",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v1.5/MoreTubeTV.apk",
+  "notes": "Smoother Watch together: pause, skip and speed from any screen always carry over, and Shorts from phones play on the TV."
 }
