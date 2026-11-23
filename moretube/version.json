@@ -1,6 +1,6 @@
 {
-  "versionCode": 13,
-  "versionName": "3.1",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.1/MoreTube.apk",
-  "notes": "Pick your name for Watch together. Keeps friend invites arriving (battery). Fixes the play button showing while a video plays."
+  "versionCode": 14,
+  "versionName": "3.2",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.2/MoreTube.apk",
+  "notes": "Emoji reactions float up over the video for everyone. Joining a room shows what was said before you came in."
 }
