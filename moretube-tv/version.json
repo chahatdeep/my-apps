@@ -1,6 +1,6 @@
 {
-  "versionCode": 4,
-  "versionName": "1.3",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v1.3/MoreTubeTV.apk",
-  "notes": "Watch together connects through all relays at once, so phones and TVs always find each other."
+  "versionCode": 5,
+  "versionName": "1.4",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-tv-v1.4/MoreTubeTV.apk",
+  "notes": "Joining a room mid-video now catches up right away. Watch together uses all relays at once."
 }
