@@ -1,6 +1,6 @@
 {
-  "versionCode": 32,
-  "versionName": "5.0",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.0/MoreTube.apk",
-  "notes": "Updating fixed on newer Android: the install confirmation now always shows up."
+  "versionCode": 33,
+  "versionName": "5.1",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.1/MoreTube.apk",
+  "notes": "Fixed the \"Watch it again\" row showing cards at odd sizes in the Compact layout."
 }
