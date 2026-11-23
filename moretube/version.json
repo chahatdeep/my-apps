@@ -1,6 +1,6 @@
 {
-  "versionCode": 20,
-  "versionName": "3.8",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.8/MoreTube.apk",
-  "notes": "Shorts: tabs under the video like the YouTube app, so swiping works from anywhere; the 'Watch in YouTube app' pop-up is gone."
+  "versionCode": 21,
+  "versionName": "3.9",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v3.9/MoreTube.apk",
+  "notes": "Shorts: swiping up or down from the bottom of the screen (the progress bar or the tabs) changes the Short, like the YouTube app."
 }
