@@ -1,6 +1,6 @@
 {
-  "versionCode": 33,
-  "versionName": "5.1",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.1/MoreTube.apk",
-  "notes": "Fixed the \"Watch it again\" row showing cards at odd sizes in the Compact layout."
+  "versionCode": 34,
+  "versionName": "5.2",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.2/MoreTube.apk",
+  "notes": "Share now has Copy. Fixes: search page, Shorts top bar and captions, Back in Curious, captions over the seek bar, flicking the mini player away, and more."
 }
