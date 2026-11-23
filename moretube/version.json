@@ -1,6 +1,6 @@
 {
-  "versionCode": 5,
-  "versionName": "2.3",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.3/MoreTube.apk",
-  "notes": "Watch together connects through all relays at once, so phones and TVs always find each other."
+  "versionCode": 6,
+  "versionName": "2.4",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.4/MoreTube.apk",
+  "notes": "Joining mid-video catches up instantly. Skips, pauses and speed from anyone stay in sync. Resizable mini player. Chat strip, side-by-side chat in full screen. Smoother motion."
 }
