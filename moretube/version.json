@@ -1,6 +1,6 @@
 {
-  "versionCode": 28,
-  "versionName": "4.6",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.6/MoreTube.apk",
-  "notes": "Curious is now a tab on Home, Subscriptions and You too, not just on Shorts."
+  "versionCode": 29,
+  "versionName": "4.7",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.7/MoreTube.apk",
+  "notes": "Updates: no more getting stuck on Installing if the confirmation is closed; a way around Play Protect blocks; faster update checks."
 }
