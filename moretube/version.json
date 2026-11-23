@@ -1,6 +1,6 @@
 {
-  "versionCode": 10,
-  "versionName": "2.8",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.8/MoreTube.apk",
-  "notes": "Send GIFs and stickers in Watch together chat (from your keyboard, or the + button). The video now stands apart from everything below it."
+  "versionCode": 11,
+  "versionName": "2.9",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v2.9/MoreTube.apk",
+  "notes": "Pull the page down for full screen standing up, like the YouTube app. The video casts a shadow over the list as you scroll. GIF and sticker names show properly."
 }
