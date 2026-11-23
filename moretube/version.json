@@ -1,6 +1,6 @@
 {
-  "versionCode": 37,
-  "versionName": "5.5",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.5/MoreTube.apk",
-  "notes": "New versions are now offered when you come back to MoreTube, not only when it starts fresh."
+  "versionCode": 38,
+  "versionName": "5.6",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.6/MoreTube.apk",
+  "notes": "A small update to check that new versions are now offered automatically. Nothing else changes."
 }
