@@ -1,6 +1,6 @@
 {
-  "versionCode": 31,
-  "versionName": "4.9",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v4.9/MoreTube.apk",
-  "notes": "Smoother updates: the install confirmation opens from the app, and nothing gets stuck on Installing."
+  "versionCode": 32,
+  "versionName": "5.0",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.0/MoreTube.apk",
+  "notes": "Updating fixed on newer Android: the install confirmation now always shows up."
 }
