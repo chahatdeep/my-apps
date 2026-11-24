@@ -29,38 +29,31 @@ $DataFile = Join-Path $PSScriptRoot 'board.json'
 $StateFile = Join-Path $PSScriptRoot 'window.json'
 $Width = 312
 
-# Two Claude-style palettes; the card follows Windows' app mode (light/dark) live.
+# Two quiet palettes (neutral greys, one muted color per status); the card follows
+# Claude's theme, or Windows' app mode when Claude is set to "System".
 $Themes = @{
   Dark = @{
-    Card = '#161615'; Ink = '#FAF9F5'; Sub = '#D9D6CC'; Faint = '#A8A59B'
-    Tile = '#222120'; TileHi = '#2E2D2B'; Line = '#D97757'
-    Purple = '#D97757'; Purple2 = '#E8E6DC'                 # accent; section titles
-    Working = '#FB923C'; Done = '#4ADE80'; Remind = '#60A5FA'; RemindTile = '#18202C'
-    HeadTop = '#2A2826'; HeadBottom = '#1E1D1B'; HeadText = '#FAF9F5'; HeadSub = '#D9D6CC'
-    Spark = '#E8875F'; Pill = '#34322F'; PillText = '#FFFFFF'
-    Btn = '#34322F'; BtnHi = '#4A4743'; BtnText = '#FFFFFF'; Edge = '#3A3936'
-    ShadowOpacity = 0.35
+    Card = '#1C1C1E'; Ink = '#ECECEE'; Sub = '#A3A3A8'; Faint = '#7A7A80'
+    Tile = '#001C1C1E'; TileHi = '#2A2A2D'; Line = '#4A4A4F'; Outline = '#2E2E31'; Divider = '#2A2A2D'
+    Purple = '#8AA9CF'; Purple2 = '#C7C7CC'                 # link color; section titles
+    Working = '#D9A441'; Done = '#7DA883'; Remind = '#8AA9CF'; RemindTile = '#001C1C1E'
+    HeadTop = '#1C1C1E'; HeadBottom = '#1C1C1E'; HeadText = '#ECECEE'; HeadSub = '#7A7A80'
+    Spark = '#ECECEE'; Pill = '#001C1C1E'; PillText = '#A3A3A8'
+    Btn = '#001C1C1E'; BtnHi = '#2C2C2F'; BtnText = '#A3A3A8'; Edge = '#001C1C1E'
+    ShadowOpacity = 0.30
   }
   Light = @{
-    Card = '#FAF9F5'; Ink = '#1F1E1D'; Sub = '#47453F'; Faint = '#6B6860'
-    Tile = '#EFEDE6'; TileHi = '#E5E2D8'; Line = '#C15F3C'
-    Purple = '#C15F3C'; Purple2 = '#3A3833'
-    Working = '#C2410C'; Done = '#15803D'; Remind = '#1D4ED8'; RemindTile = '#E6EDFB'
-    HeadTop = '#F2F0E9'; HeadBottom = '#EAE7DD'; HeadText = '#1F1E1D'; HeadSub = '#55524A'
-    Spark = '#C15F3C'; Pill = '#FFFFFF'; PillText = '#1F1E1D'
-    Btn = '#E2DFD4'; BtnHi = '#D5D1C4'; BtnText = '#1F1E1D'; Edge = '#D6D2C6'
-    ShadowOpacity = 0.18
+    Card = '#FFFFFF'; Ink = '#1C1C1E'; Sub = '#5C5C62'; Faint = '#8A8A90'
+    Tile = '#00FFFFFF'; TileHi = '#F0F0F2'; Line = '#C8C8CD'; Outline = '#E3E3E6'; Divider = '#EDEDEF'
+    Purple = '#3F6A9E'; Purple2 = '#3A3A3F'
+    Working = '#9A6A12'; Done = '#3F7148'; Remind = '#3F6A9E'; RemindTile = '#00FFFFFF'
+    HeadTop = '#FFFFFF'; HeadBottom = '#FFFFFF'; HeadText = '#1C1C1E'; HeadSub = '#8A8A90'
+    Spark = '#1C1C1E'; Pill = '#00FFFFFF'; PillText = '#5C5C62'
+    Btn = '#00FFFFFF'; BtnHi = '#EDEDEF'; BtnText = '#5C5C62'; Edge = '#00FFFFFF'
+    ShadowOpacity = 0.14
   }
 }
-# Group chips: [background, text] per theme, each pair high-contrast.
-$ChipSets = @{
-  Dark = @(
-    @('#4A2236', '#F9A8D4'), @('#16404A', '#67E8F9'), @('#33285A', '#C4B5FD'), @('#4A2E1C', '#FDBA74'),
-    @('#173F3B', '#5EEAD4'), @('#1E3358', '#93C5FD'), @('#433A16', '#FDE68A'), @('#4A1F27', '#FDA4AF'))
-  Light = @(
-    @('#FCE7F3', '#9D174D'), @('#CFFAFE', '#155E75'), @('#EDE9FE', '#5B21B6'), @('#FFEDD5', '#9A3412'),
-    @('#CCFBF1', '#115E59'), @('#DBEAFE', '#1E40AF'), @('#FEF9C3', '#854D0E'), @('#FFE4E6', '#9F1239'))
-}
+$ChipSets = @{ Dark = @('x'); Light = @('x') }   # group tags are plain text now
 
 # Match the Claude app's own theme (userThemeMode in its config.json: light, dark
 # or system); for "system" or if it can't be read, follow Windows' app mode.
@@ -129,12 +122,12 @@ function Until([long]$atMs, [long]$nowMs) {
         FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="13"
         TextOptions.TextFormattingMode="Display">
   <Grid Margin="14">
-    <Border x:Name="Card" CornerRadius="22" Background="$($C.Card)">
+    <Border x:Name="Card" CornerRadius="12" Background="$($C.Card)" BorderThickness="1">
       <Border.Effect>
         <DropShadowEffect BlurRadius="24" ShadowDepth="4" Direction="270" Opacity="0.35" Color="#000000"/>
       </Border.Effect>
       <StackPanel>
-        <Border x:Name="Header" CornerRadius="22,22,0,0" Padding="12,6,6,7" BorderBrush="#D97757" BorderThickness="0,0,0,2">
+        <Border x:Name="Header" CornerRadius="12,12,0,0" Padding="12,7,6,7" BorderThickness="0,0,0,1">
           <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
               <GradientStop Color="#2A2826" Offset="0"/>
@@ -147,16 +140,16 @@ function Until([long]$atMs, [long]$nowMs) {
               <Button x:Name="MinBtn" Width="22" Height="22" ToolTip="Minimize" Cursor="Hand"/>
               <Button x:Name="CloseBtn" Width="22" Height="22" Margin="3,0,0,0" ToolTip="Close" Cursor="Hand"/>
             </StackPanel>
-            <TextBlock x:Name="Spark" DockPanel.Dock="Left" Text="&#x2731;" Foreground="#E8875F" FontSize="15"
+            <TextBlock x:Name="Spark" DockPanel.Dock="Left" Text="" FontSize="1"
                        FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,8,0" Visibility="Collapsed"/>
             <StackPanel x:Name="TopHost" Orientation="Horizontal" VerticalAlignment="Center">
               <StackPanel x:Name="TitleBlock" VerticalAlignment="Center">
-                <TextBlock x:Name="Title" FontSize="13.5" FontWeight="SemiBold" VerticalAlignment="Center"><Run x:Name="TitleSpark" Text="&#x2731; "/><Run x:Name="TitleText" Text="Claude Sessions"/><Run Text="  "/><Run x:Name="Subtitle" FontSize="11" FontWeight="Normal"/></TextBlock>
+                <TextBlock x:Name="Title" FontSize="13.5" FontWeight="SemiBold" VerticalAlignment="Center"><Run x:Name="TitleSpark" Text=""/><Run x:Name="TitleText" Text="Claude Sessions"/><Run Text="  "/><Run x:Name="Subtitle" FontSize="11" FontWeight="Normal"/></TextBlock>
               </StackPanel>
             </StackPanel>
           </DockPanel>
           <StackPanel x:Name="BottomHost">
-            <StackPanel x:Name="Pills" Orientation="Horizontal" Margin="0,5,0,0" VerticalAlignment="Center"/>
+            <StackPanel x:Name="Pills" Orientation="Horizontal" Margin="0,3,0,0" VerticalAlignment="Center"/>
           </StackPanel>
           </StackPanel>
         </Border>
@@ -191,7 +184,7 @@ function Set-HeaderButtonStyle {
   <Setter Property="Template">
     <Setter.Value>
       <ControlTemplate TargetType="Button">
-        <Border x:Name="B" Background="{TemplateBinding Background}" CornerRadius="11">
+        <Border x:Name="B" Background="{TemplateBinding Background}" CornerRadius="6">
           <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
         <ControlTemplate.Triggers>
@@ -216,13 +209,14 @@ function Set-ThemeChrome {
   $grad.GradientStops.Add([System.Windows.Media.GradientStop]::new([System.Windows.Media.ColorConverter]::ConvertFromString($C.HeadTop), 0))
   $grad.GradientStops.Add([System.Windows.Media.GradientStop]::new([System.Windows.Media.ColorConverter]::ConvertFromString($C.HeadBottom), 1))
   $header.Background = $grad
-  $header.BorderBrush = Brush $C.Purple
+  $header.BorderBrush = Brush $C.Divider
+  $card.BorderBrush = Brush $C.Outline
   $window.FindName('TitleSpark').Foreground = Brush $C.Spark
   $window.FindName('TitleText').Foreground = Brush $C.HeadText
   $subtitle.Foreground = Brush $C.HeadSub
   $spark.Foreground = Brush $C.Spark
   $fx = New-Object System.Windows.Media.Effects.DropShadowEffect
-  $fx.BlurRadius = 24; $fx.ShadowDepth = 4; $fx.Direction = 270; $fx.Opacity = $C.ShadowOpacity
+  $fx.BlurRadius = 18; $fx.ShadowDepth = 3; $fx.Direction = 270; $fx.Opacity = $C.ShadowOpacity
   $fx.Color = [System.Windows.Media.Colors]::Black
   $card.Effect = $fx
   Set-HeaderButtonStyle
@@ -256,62 +250,47 @@ function New-Text([string]$text, [string]$color, [double]$size = 13, [string]$we
   $t
 }
 
+# A count in the header: the number in its status color, the label in grey.
 function New-Pill([string]$text, [string]$dotColor) {
-  $b = New-Object System.Windows.Controls.Border
-  $b.Background = Brush $C.Pill; $b.CornerRadius = Rad 10
-  $b.Padding = Thk 6 1 7 2; $b.Margin = Thk 0 0 4 0
-  $p = New-Object System.Windows.Controls.StackPanel; $p.Orientation = 'Horizontal'
-  $d = New-Object System.Windows.Shapes.Ellipse
-  $d.Width = 6; $d.Height = 6; $d.Fill = Brush $dotColor; $d.Margin = Thk 0 0 5 0; $d.VerticalAlignment = 'Center'
-  [void]$p.Children.Add($d)
-  [void]$p.Children.Add((New-Text $text $C.PillText 10.5 'SemiBold'))
-  $b.Child = $p
-  $b
+  $t = New-Object System.Windows.Controls.TextBlock
+  $t.FontSize = 11; $t.Margin = Thk 0 0 12 0; $t.VerticalAlignment = 'Center'
+  $parts = $text -split ' ', 2
+  $n = New-Object System.Windows.Documents.Run($parts[0]); $n.Foreground = Brush $dotColor; $n.FontWeight = 'SemiBold'
+  [void]$t.Inlines.Add($n)
+  if ($parts.Count -gt 1) { $l = New-Object System.Windows.Documents.Run(' ' + $parts[1]); $l.Foreground = Brush $C.PillText; [void]$t.Inlines.Add($l) }
+  $t
 }
 
-# The checkbox-style marker: a rounded square with a colored outline.
-# Status marker: a small outlined box with a vector mark inset inside it
-# (check = recent, dot = working, clock = reminder). Vectors keep even spacing;
-# font glyphs crowd the border at this size.
+# Status mark, a small vector: check = recent, filled dot = working,
+# clock = reminder. No box around it.
 function New-Box([string]$color, [string]$kind, [bool]$filled) {
-  $b = New-Object System.Windows.Controls.Border
-  $b.Width = 14; $b.Height = 14; $b.CornerRadius = Rad 4
-  $b.BorderThickness = Thk 1.5 1.5 1.5 1.5; $b.BorderBrush = Brush $color
-  $b.Background = Brush '#00000000'
-  $b.VerticalAlignment = 'Center'; $b.Margin = Thk 0 0 8 0
   $mark = New-Object System.Windows.Shapes.Path
+  $mark.Width = 12; $mark.Height = 12; $mark.VerticalAlignment = 'Center'; $mark.Margin = Thk 0 0 8 0
   $mark.Stroke = Brush $color; $mark.StrokeThickness = 1.5
   $mark.StrokeStartLineCap = 'Round'; $mark.StrokeEndLineCap = 'Round'; $mark.StrokeLineJoin = 'Round'
-  $mark.Width = 12; $mark.Height = 12
   switch ($kind) {
     { $_ -eq $Glyph.Clock } {
-      $b.CornerRadius = Rad 7.5
-      $mark.Data = [System.Windows.Media.Geometry]::Parse('M 6,3.2 L 6,6 L 8,7.2')
+      $mark.Data = [System.Windows.Media.Geometry]::Parse('M 6,6 m -4.6,0 a 4.6,4.6 0 1,0 9.2,0 a 4.6,4.6 0 1,0 -9.2,0 M 6,3.6 L 6,6 L 7.7,7')
+      $mark.VerticalAlignment = 'Top'; $mark.Margin = Thk 0 2 8 0
     }
-    { $_ -eq $Glyph.Check } {
-      $mark.Data = [System.Windows.Media.Geometry]::Parse('M 3.2,6.2 L 5.2,8.2 L 8.8,4')
-    }
+    { $_ -eq $Glyph.Check } { $mark.Data = [System.Windows.Media.Geometry]::Parse('M 2.2,6.4 L 4.8,9 L 9.8,3.2') }
     default {
-      $mark.Data = [System.Windows.Media.Geometry]::Parse('M 6,6 m -2,0 a 2,2 0 1,0 4,0 a 2,2 0 1,0 -4,0')
+      $mark.Data = [System.Windows.Media.Geometry]::Parse('M 6,6 m -3,0 a 3,3 0 1,0 6,0 a 3,3 0 1,0 -6,0')
       $mark.Fill = Brush $color; $mark.StrokeThickness = 0
     }
   }
-  $b.Child = $mark
-  $b
+  $mark
 }
 
 # A section title; with a $key it collapses and expands on click (state kept).
 function New-SectionTitle([string]$text, [string]$color, [int]$count, [string]$key = '') {
   $wrap = New-Object System.Windows.Controls.Border
-  $wrap.Margin = Thk 0 6 0 3; $wrap.Padding = Thk 2 2 4 2; $wrap.CornerRadius = Rad 6
+  $wrap.Margin = Thk 0 8 0 2; $wrap.Padding = Thk 2 1 4 1; $wrap.CornerRadius = Rad 4
   $wrap.Background = Brush '#00000000'
   $p = New-Object System.Windows.Controls.StackPanel
   $p.Orientation = 'Horizontal'
-  $bar = New-Object System.Windows.Controls.Border
-  $bar.Width = 3; $bar.Height = 12; $bar.CornerRadius = Rad 2; $bar.Background = Brush $color; $bar.Margin = Thk 0 0 8 0
-  [void]$p.Children.Add($bar)
-  [void]$p.Children.Add((New-Text $text.ToUpper() $C.Purple2 10.5 'Bold'))
-  [void]$p.Children.Add((New-Text "  $count" $C.Faint 10.5 'SemiBold'))
+  [void]$p.Children.Add((New-Text $text $C.Purple2 11.5 'SemiBold'))
+  [void]$p.Children.Add((New-Text "  $count" $C.Faint 11))
   if ($key) {
     $open = -not $script:closedGroups.ContainsKey($key)
     $arrow = New-Text $(if ($open) { "  $($Glyph.Down)" } else { "  $($Glyph.Right)" }) $C.Faint 11 'Bold'
@@ -319,7 +298,7 @@ function New-SectionTitle([string]$text, [string]$color, [int]$count, [string]$k
     [void]$p.Children.Add($arrow)
     $wrap.Cursor = 'Hand'; $wrap.Tag = $key
     $wrap.ToolTip = $(if ($open) { 'Collapse' } else { 'Expand' })
-    $wrap.Add_MouseEnter({ $this.Background = Brush $C.Tile })
+    $wrap.Add_MouseEnter({ $this.Background = Brush $C.TileHi })
     $wrap.Add_MouseLeave({ $this.Background = Brush '#00000000' })
     $wrap.Add_MouseLeftButtonUp({
         $k = [string]$this.Tag
@@ -338,18 +317,16 @@ function New-Empty([string]$text) {
 }
 
 function New-GroupChip([string]$name) {
-  $pair = Chip $name
-  $b = New-Object System.Windows.Controls.Border
-  $b.Background = Brush $pair[0]; $b.CornerRadius = Rad 6; $b.Padding = Thk 5 0 5 1; $b.Margin = Thk 0 0 5 0; $b.VerticalAlignment = 'Center'
-  $b.Child = (New-Text $name $pair[1] 9.5 'SemiBold')
-  $b
+  $t = New-Text $name $C.Faint 10.5
+  $t.Margin = Thk 0 0 8 0; $t.VerticalAlignment = 'Center'; $t.MaxWidth = 90
+  $t
 }
 
 function New-SessionRow($s, [long]$now, [string]$state, [int]$depth, [bool]$showGroup) {
   $row = New-Object System.Windows.Controls.Border
-  $row.CornerRadius = Rad 8
-  $row.Padding = Thk 7 4 7 4
-  $row.Margin = Thk (12 * $depth) 0 0 2
+  $row.CornerRadius = Rad 6
+  $row.Padding = Thk 4 3 6 3
+  $row.Margin = Thk (12 * $depth) 0 0 0
   $row.Background = Brush $C.Tile
   $row.Cursor = 'Hand'
   $row.ToolTip = "Open in Claude: $($s.title)"
@@ -369,12 +346,12 @@ function New-SessionRow($s, [long]$now, [string]$state, [int]$depth, [bool]$show
   if ($showGroup -and $s.group) { [void]$meta.Children.Add((New-GroupChip $s.group)) }
   $age = Ago ($now - [double]$s.lastActivityAt)
   $age = $age -replace ' ago$', '' -replace '^just now$', 'now'
-  $mt = New-Text $age $(if ($state -eq 'working') { $C.Working } else { $C.Sub }) 10.5 $(if ($state -eq 'working') { 'SemiBold' } else { 'Normal' })
+  $mt = New-Text $age $(if ($state -eq 'working') { $C.Working } else { $C.Faint }) 10.5
   $mt.VerticalAlignment = 'Center'; $mt.MinWidth = 22; $mt.TextAlignment = 'Right'
   [void]$meta.Children.Add($mt)
   [System.Windows.Controls.DockPanel]::SetDock($meta, 'Right')
   [void]$dock.Children.Add($meta)
-  $col = New-Text $s.title $C.Ink 12 'SemiBold'
+  $col = New-Text $s.title $C.Ink 12
   $col.VerticalAlignment = 'Center'
   [void]$dock.Children.Add($col)
   $row.Child = $dock
@@ -413,9 +390,9 @@ function New-ChildRow($s, [long]$now, [int]$depth) {
   # A curved connector: left and bottom edges of a box, its corner rounded.
   $elbow = New-Object System.Windows.Controls.Border
   $elbow.Width = 9; $elbow.Height = 12; $elbow.VerticalAlignment = 'Top'
-  $elbow.BorderThickness = Thk 2 0 0 2; $elbow.BorderBrush = Brush $C.Line
+  $elbow.BorderThickness = Thk 1 0 0 1; $elbow.BorderBrush = Brush $C.Line
   $elbow.CornerRadius = [System.Windows.CornerRadius]::new(0, 0, 0, 9)
-  $elbow.Margin = Thk 6 0 3 0
+  $elbow.Margin = Thk 9 0 2 0
   [System.Windows.Controls.DockPanel]::SetDock($elbow, 'Left')
   [void]$g.Children.Add($elbow)
   [void]$g.Children.Add((New-SessionRow $s $now $(if ($s.isRunning) { 'working' } else { 'done' }) 0 $true))
@@ -480,9 +457,8 @@ function Render {
   $reminders = @($data.reminders | Where-Object { $_ } | Sort-Object { [double]$_.nextRunAt })
 
   if ($script:collapsed) {
-    [void]$pills.Children.Add((New-Pill "$($working.Count)" $C.Working))
-    [void]$pills.Children.Add((New-Pill "$($recent.Count)" $C.Done))
-    [void]$pills.Children.Add((New-Pill "$($reminders.Count)" $C.Remind))
+    [void]$pills.Children.Add((New-Pill "$($working.Count) working" $C.Working))
+    [void]$pills.Children.Add((New-Pill "$($recent.Count) recent" $C.Done))
   } else {
     [void]$pills.Children.Add((New-Pill "$($working.Count) working" $C.Working))
     [void]$pills.Children.Add((New-Pill "$($recent.Count) recent" $C.Done))
@@ -492,21 +468,21 @@ function Render {
   if ($script:collapsed) { return }
 
   # Reminders.
-  [void]$body.Children.Add((New-SectionTitle 'Upcoming reminders' $C.Remind $reminders.Count 'section:reminders'))
+  [void]$body.Children.Add((New-SectionTitle 'Reminders' $C.Remind $reminders.Count 'section:reminders'))
   $showReminders = -not $script:closedGroups.ContainsKey('section:reminders')
   if ($showReminders -and $reminders.Count -eq 0) { [void]$body.Children.Add((New-Empty 'Nothing scheduled.')) }
   foreach ($r in $(if ($showReminders) { $reminders } else { @() })) {
     $row = New-Object System.Windows.Controls.Border
-    $row.CornerRadius = Rad 8; $row.Padding = Thk 7 4 7 4; $row.Margin = Thk 0 0 0 2
+    $row.CornerRadius = Rad 6; $row.Padding = Thk 4 3 6 3; $row.Margin = Thk 0 0 0 0
     $row.Background = Brush $C.RemindTile
     $dock = New-Object System.Windows.Controls.DockPanel
     $box = New-Box $C.Remind $Glyph.Clock $false
     [System.Windows.Controls.DockPanel]::SetDock($box, 'Left')
     [void]$dock.Children.Add($box)
     $col = New-Object System.Windows.Controls.StackPanel
-    $tt = New-Text $r.title $C.Ink 12 'SemiBold'; $tt.TextWrapping = 'Wrap'; $tt.TextTrimming = 'None'
+    $tt = New-Text $r.title $C.Ink 12; $tt.TextWrapping = 'Wrap'; $tt.TextTrimming = 'None'
     [void]$col.Children.Add($tt)
-    $wt = New-Text (Until ([long]$r.nextRunAt) $nowMs) $C.Remind 10 'SemiBold'; $wt.Margin = Thk 0 0 0 0
+    $wt = New-Text (Until ([long]$r.nextRunAt) $nowMs) $C.Faint 10.5; $wt.Margin = Thk 0 0 0 0
     [void]$col.Children.Add($wt)
     [void]$dock.Children.Add($col)
     $row.Child = $dock
@@ -520,7 +496,7 @@ function Render {
   foreach ($s in $(if ($showWorking) { $working } else { @() })) { [void]$body.Children.Add((New-SessionRow $s $nowMs 'working' 0 $true)) }
 
   # Recently active: nested by sidebar group, then by parent session.
-  [void]$body.Children.Add((New-SectionTitle 'Recently active' $C.Done $recent.Count 'section:recent'))
+  [void]$body.Children.Add((New-SectionTitle 'Recent' $C.Done $recent.Count 'section:recent'))
   $showRecent = -not $script:closedGroups.ContainsKey('section:recent')
   if ($showRecent -and $recent.Count -eq 0) { [void]$body.Children.Add((New-Empty 'No sessions in the last day.')) }
   $recentIds = @{}; foreach ($s in $recent) { $recentIds[[string]$s.id] = $true }
@@ -540,25 +516,25 @@ function Render {
   $btn = New-Object System.Windows.Controls.Border
   # Quiet round button, dark like the rows, with a vector refresh arrow in the accent color.
   $btn.Width = 26; $btn.Height = 26; $btn.CornerRadius = Rad 13
-  $btn.Background = Brush $C.Tile; $btn.BorderBrush = Brush $C.Edge; $btn.BorderThickness = Thk 1 1 1 1
+  $btn.Background = Brush '#00000000'; $btn.BorderThickness = Thk 0 0 0 0
   $btn.Cursor = 'Hand'; $btn.ToolTip = 'Refresh'
   # Bold arc plus a filled arrowhead, so it reads clearly at this size.
   $icon = New-Object System.Windows.Controls.Grid
   $icon.Width = 18; $icon.Height = 18; $icon.HorizontalAlignment = 'Center'; $icon.VerticalAlignment = 'Center'
   $arc = New-Object System.Windows.Shapes.Path
   $arc.Data = [System.Windows.Media.Geometry]::Parse('M 13.76,6.25 A 5.5,5.5 0 1 1 8.6,3.5')
-  $arc.Stroke = Brush $C.Ink; $arc.StrokeThickness = 2; $arc.StrokeStartLineCap = 'Round'; $arc.StrokeEndLineCap = 'Flat'
+  $arc.Stroke = Brush $C.Sub; $arc.StrokeThickness = 2; $arc.StrokeStartLineCap = 'Round'; $arc.StrokeEndLineCap = 'Flat'
   $head = New-Object System.Windows.Shapes.Path
   $head.Data = [System.Windows.Media.Geometry]::Parse('M 8.2,0.6 L 12.2,3.5 L 8.2,6.4 Z')
-  $head.Fill = Brush $C.Ink
+  $head.Fill = Brush $C.Sub
   [void]$icon.Children.Add($arc); [void]$icon.Children.Add($head)
   # Small button: the 18-unit icon scaled down to 12 px.
   $vb = New-Object System.Windows.Controls.Viewbox
   $vb.Width = 12; $vb.Height = 12; $vb.Child = $icon
-  $btn.Width = 22; $btn.Height = 22; $btn.CornerRadius = Rad 11
+  $btn.Width = 22; $btn.Height = 22; $btn.CornerRadius = Rad 6
   $btn.Child = $vb
   $btn.Add_MouseEnter({ $this.Background = Brush $C.TileHi })
-  $btn.Add_MouseLeave({ $this.Background = Brush $C.Tile })
+  $btn.Add_MouseLeave({ $this.Background = Brush '#00000000' })
   $btn.Add_MouseLeftButtonUp({ Render })
   [System.Windows.Controls.DockPanel]::SetDock($btn, 'Right')
   [void]$foot.Children.Add($btn)
@@ -570,7 +546,7 @@ function Render {
   [void]$ft.Children.Add((New-Text $msg $C.Faint 10))
   if ($script:hidden.Count -gt 0) {
     [void]$ft.Children.Add((New-Text "  $($Glyph.Dot)  " $C.Faint 10))
-    $undo = New-Text "Restore $($script:hidden.Count) removed" $C.Purple 10 'SemiBold'
+    $undo = New-Text "Restore $($script:hidden.Count) removed" $C.Purple 10
     $undo.Cursor = 'Hand'; $undo.TextDecorations = [System.Windows.TextDecorations]::Underline
     $undo.ToolTip = 'Show the sessions you removed from Recent'
     $undo.Add_MouseLeftButtonUp({ $script:hidden.Clear(); Save-WindowState; Render })
@@ -583,15 +559,15 @@ function Render {
 function Set-Collapsed([bool]$value) {
   $script:collapsed = $value
   $body.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
-  $header.CornerRadius = $(if ($value) { Rad 18 } else { [System.Windows.CornerRadius]::new(22, 22, 0, 0) })
-  $card.CornerRadius = $(if ($value) { Rad 18 } else { Rad 22 })
+  $header.CornerRadius = $(if ($value) { Rad 12 } else { [System.Windows.CornerRadius]::new(12, 12, 0, 0) })
+  $card.CornerRadius = Rad 12
   # Minimized: one slim row - spark, three count badges, expand button.
   $header.Padding = $(if ($value) { Thk 12 6 6 6 } else { Thk 12 6 6 7 })
-  $header.BorderThickness = $(if ($value) { Thk 0 0 0 0 } else { Thk 0 0 0 2 })
+  $header.BorderThickness = $(if ($value) { Thk 0 0 0 0 } else { Thk 0 0 0 1 })
   $titleBlock.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
   $spark.Visibility = $(if ($value) { 'Visible' } else { 'Collapsed' })
   $closeBtn.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
-  $pills.Margin = $(if ($value) { Thk 0 0 0 0 } else { Thk 0 5 0 0 })
+  $pills.Margin = $(if ($value) { Thk 0 0 0 0 } else { Thk 0 3 0 0 })
   # Minimized: the badges move up beside the spark and the card shrinks to fit.
   $from = $(if ($value) { $bottomHost } else { $topHost }); $to = $(if ($value) { $topHost } else { $bottomHost })
   if ($from.Children.Contains($pills)) { $from.Children.Remove($pills); [void]$to.Children.Add($pills) }

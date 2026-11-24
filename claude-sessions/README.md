@@ -1,23 +1,16 @@
 # Claude Sessions
 
-A small card that sits at the **top right of the Claude desktop app** and shows, at a glance:
+A small card in the top right corner of the Claude desktop app. It lists your scheduled Claude tasks with their next run time, the sessions working right now, and sessions from the last 24 hours with their sidebar group. A session started from another one is indented under it.
 
-- **Upcoming reminders**: your scheduled Claude tasks, with the date and a countdown
-- **Working now**: which Claude sessions are busy right now
-- **Recently active**: sessions from the last 24 hours, with their sidebar group, and sessions started from another session nested under it
-
-Click a session to jump to it. Right-click a recent session to hide it from the list (it comes back when you use it again).
+Click a session to open it. Right-click a recent session to hide it; it reappears when you use it again.
 
 | Dark | Light | Minimized |
 | --- | --- | --- |
 | ![Dark](screenshots/dark.png) | ![Light](screenshots/light.png) | ![Minimized](screenshots/minimized.png) |
 
-- Follows Claude's theme (light or dark; "System" follows Windows) and switches live.
-- Stays attached to the Claude window: it moves with it, sits above Claude only (not above other apps), and hides when Claude is minimized.
-- **–** shrinks it to a slim pill with the three counts; each section folds with its ▾.
-- If you close it, it comes back the next time you open a Claude session, with `/sessions`, or from the Start menu ("Claude Sessions").
+It uses Claude's light or dark setting (or Windows' when Claude is set to System) and changes when that does. The card moves with the Claude window, stays above Claude but not above other apps, and hides when Claude is minimized. The – button shrinks it to one line of counts, and each section folds with its arrow. If you close it, it comes back the next time a Claude session starts, when you type `/sessions`, or from the Start menu.
 
-## Install: paste this into Claude
+## Install by pasting a prompt into Claude
 
 Needs Windows 10/11 and the Claude desktop app (Code tab). Paste this into a Claude Code session:
 
@@ -60,7 +53,7 @@ It stops the card, removes both folders and the shortcut, and takes the mod back
 
 ## Notes
 
-- Claude only reports whether a session is running or not, so a session waiting for your answer shows under **Recently active**, not as a separate state.
+- Claude only reports whether a session is running or not, so a session waiting for your answer shows under Recent, not as a separate state.
 - Sessions that were already open when you installed don't load the mod. New ones do.
 
 ## License
