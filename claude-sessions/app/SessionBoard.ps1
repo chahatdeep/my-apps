@@ -429,7 +429,7 @@ function New-GroupHeader([string]$name, [int]$count, [bool]$open) {
 function Render {
   $pills.Children.Clear(); $body.Children.Clear()
   $nowMs = [DateTimeOffset]::Now.ToUnixTimeMilliseconds()
-  $subtitle.Text = (Get-Date).ToString('ddd, MMM d')
+  $subtitle.Text = $(if ($script:collapsed) { '' } else { (Get-Date).ToString('ddd, MMM d') })
 
   $data = $null
   if (Test-Path -LiteralPath $DataFile) {
@@ -555,21 +555,22 @@ function Render {
 
 function Set-Collapsed([bool]$value) {
   $script:collapsed = $value
+  # Same width and same header row in both states, so the - button never moves.
+  # Minimized hides the body and shows the counts in place of the date.
   $body.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
   $header.CornerRadius = $(if ($value) { Rad 12 } else { [System.Windows.CornerRadius]::new(12, 12, 0, 0) })
   $card.CornerRadius = Rad 12
-  # Minimized: one slim row - spark, three count badges, expand button.
-  $header.Padding = $(if ($value) { Thk 12 5 5 5 } else { Thk 12 5 5 5 })
+  $header.Padding = Thk 12 5 5 5
   $header.BorderThickness = $(if ($value) { Thk 0 0 0 0 } else { Thk 0 0 0 1 })
-  $titleBlock.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
-  $spark.Visibility = $(if ($value) { 'Visible' } else { 'Collapsed' })
-  $closeBtn.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
-  $pills.Margin = $(if ($value) { Thk 0 0 0 0 } else { Thk 0 3 0 0 })
-  # Minimized: the badges move up beside the spark and the card shrinks to fit.
-  $from = $(if ($value) { $bottomHost } else { $topHost }); $to = $(if ($value) { $topHost } else { $bottomHost })
-  if ($from.Children.Contains($pills)) { $from.Children.Remove($pills); [void]$to.Children.Add($pills) }
-  $bottomHost.Visibility = 'Collapsed'   # counts show only in the minimized bar
-  if ($value) { $window.SizeToContent = 'WidthAndHeight' } else { $window.SizeToContent = 'Height'; $window.Width = $Width }
+  $titleBlock.Visibility = 'Visible'
+  $spark.Visibility = 'Collapsed'
+  $closeBtn.Visibility = 'Visible'
+  $subtitle.Text = ''
+  $pills.Margin = Thk 10 0 0 0
+  if ($bottomHost.Children.Contains($pills)) { $bottomHost.Children.Remove($pills); [void]$topHost.Children.Add($pills) }
+  $pills.Visibility = $(if ($value) { 'Visible' } else { 'Collapsed' })
+  $bottomHost.Visibility = 'Collapsed'
+  $window.SizeToContent = 'Height'; $window.Width = $Width
   $minBtn.Content = $(if ($value) { $Glyph.Down } else { $Glyph.Dash })
   $minBtn.ToolTip = $(if ($value) { 'Expand' } else { 'Minimize' })
   Render
