@@ -587,6 +587,10 @@ function Set-Collapsed([bool]$value) {
   $titleBlock.Visibility = 'Visible'
   $spark.Visibility = 'Collapsed'
   $closeBtn.Visibility = 'Visible'
+  # Size buttons only when expanded, so the minimized bar has room for both counts
+  # (- and x are right-aligned, so they keep their place).
+  $zoomOutBtn.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
+  $zoomInBtn.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
   $subtitle.Text = ''
   $pills.Margin = Thk 10 0 0 0
   if ($bottomHost.Children.Contains($pills)) { $bottomHost.Children.Remove($pills); [void]$topHost.Children.Add($pills) }
