@@ -39,6 +39,14 @@
   .mock-b .hi { outline:2px solid var(--red); outline-offset:6px; border-radius:6px; }
   .feat { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px; }
   .feat span { border:1px solid var(--line); border-radius:999px; padding:6px 12px; font-size:13px; color:var(--dim); }
+  .cs h2 { color:#e8875f; }
+  .cs .ico { background:rgba(217,119,87,.14); }
+  .cs .btn { background:#c96442; } .cs .btn:hover { background:#d97757; }
+  .shot { display:block; margin:12px auto 0; width:100%; max-width:300px; border-radius:20px; box-shadow:0 12px 32px rgba(0,0,0,.45); }
+  .prompt { position:relative; margin-top:10px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px 16px 14px; }
+  .prompt pre { white-space:pre-wrap; word-break:break-word; font:13px/1.5 ui-monospace, Consolas, monospace; color:var(--text); margin:0 0 12px; }
+  .prompt button { font:600 14px/1 -apple-system, "Segoe UI", Roboto, sans-serif; color:#fff; background:#c96442; border:0; border-radius:999px; padding:10px 16px; cursor:pointer; transition:transform .15s, background .2s; }
+  .prompt button:hover { background:#d97757; } .prompt button:active { transform:scale(.95); }
   footer { text-align:center; color:#6e6e73; font-size:13px; margin-top:36px; }
   footer a { color:var(--dim); }
   @keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
@@ -101,7 +109,26 @@
     <li>Tap <b>Add friend</b> next to someone, and you can invite each other any time.</li>
   </ol>
 
-  <footer>Not affiliated with YouTube or Google. · <a href="https://github.com/chahatdeep/my-apps/releases">All releases</a></footer>
+  <section class="cs">
+    <h2>ALSO: CLAUDE SESSIONS (WINDOWS)</h2>
+    <div class="card">
+      <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8875f" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg></div>
+      <div class="what"><b>Claude Sessions</b><small>A card at the top right of the Claude desktop app: reminders, sessions working now, and recent sessions</small></div>
+      <a class="btn" href="https://github.com/chahatdeep/my-apps/tree/main/claude-sessions">Details</a>
+    </div>
+    <img class="shot" src="claude-sessions/screenshots/dark.png" alt="The Claude Sessions card in dark mode" loading="lazy">
+    <p class="note" style="margin-top:18px">To install, paste this into a Claude Code session (Windows, Claude desktop app, Code tab), then open a new session:</p>
+    <div class="prompt">
+      <pre id="cs-prompt">Install "Claude Sessions" for me from https://github.com/chahatdeep/my-apps/tree/main/claude-sessions.
+Download https://github.com/chahatdeep/my-apps/archive/refs/heads/main.zip into a new empty folder and extract it.
+Read claude-sessions/README.md, claude-sessions/install.ps1 and the files it installs so you know what they do,
+then run it with: powershell -ExecutionPolicy Bypass -File "&lt;that folder&gt;\my-apps-main\claude-sessions\install.ps1"
+Tell me when it's done and what it changed.</pre>
+      <button type="button" id="cs-copy">Copy prompt</button>
+    </div>
+  </section>
+
+  <footer>MoreTube is not affiliated with YouTube or Google; Claude Sessions is not made by Anthropic. · <a href="https://github.com/chahatdeep/my-apps/releases">All releases</a></footer>
 </main>
 <script>
   // always the newest build: the same version files the apps check for updates
@@ -112,6 +139,20 @@
         document.getElementById(p[0]).href = j.apk;
         document.getElementById(p[0] + '-v').textContent = 'Version ' + j.versionName;
       }).catch(function () {});
+  });
+  document.getElementById('cs-copy').addEventListener('click', function () {
+    var b = this, pre = document.getElementById('cs-prompt');
+    function done(msg) { b.textContent = msg; setTimeout(function () { b.textContent = 'Copy prompt'; }, 1800); }
+    function fallback() {
+      // older browsers / no clipboard permission: select the text and copy it the old way
+      var r = document.createRange(); r.selectNodeContents(pre);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      done(ok ? 'Copied' : 'Selected: press Ctrl+C');
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pre.textContent).then(function () { done('Copied'); }, fallback);
+    } else { fallback(); }
   });
 </script>
 </body>
