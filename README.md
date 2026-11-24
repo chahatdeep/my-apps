@@ -8,7 +8,7 @@ Release builds of my apps, with the version files they check for updates.
 | MoreTube TV (Android / Google TV) | `com.praiselab.tubetv` | [`moretube-tv/version.json`](moretube-tv/version.json) | [Releases](../../releases?q=moretube-tv) |
 | Claude Sessions (Windows, Claude desktop app) | `session-board` (Claude mod) | [`plugin.json`](claude-sessions/mod/session-board/.claude-plugin/plugin.json) | [Install](claude-sessions/) |
 | Horizon (Android phone home screen) | `com.praiselab.horizon` | source: [chahatdeep/horizon-launcher](https://github.com/chahatdeep/horizon-launcher) | [Releases](../../releases?q=horizon) |
-| Lumi (Windows lithophane and 3D model maker) | own repo | [chahatdeep/Lumi](https://github.com/chahatdeep/Lumi) | [Website](https://chahatdeep.github.io/Lumi/) |
+| Lumi (Windows lithophane and 3D model maker)<br><a href="https://chahatdeep.github.io/Lumi/"><img src="lumi/screenshots/main.jpg" alt="Lumi turning a photo into a framed lithophane" width="220"></a> | own repo | [chahatdeep/Lumi](https://github.com/chahatdeep/Lumi) | [Website](https://chahatdeep.github.io/Lumi/) |
 
 **Claude Sessions** is a card at the top right of the Claude desktop app showing upcoming reminders, sessions working now and recently active sessions. It installs by pasting one prompt into Claude: see [`claude-sessions/`](claude-sessions/).
 
