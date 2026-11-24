@@ -62,3 +62,7 @@ It stops the card, removes both folders and the shortcut, and takes the mod back
 
 - Claude only reports whether a session is running or not, so a session waiting for your answer shows under **Recently active**, not as a separate state.
 - Sessions that were already open when you installed don't load the mod. New ones do.
+
+## License
+
+[MIT](LICENSE). This license covers the `claude-sessions` folder only.
