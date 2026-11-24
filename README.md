@@ -6,8 +6,9 @@ Release builds of my apps, with the version files they check for updates.
 | --- | --- | --- | --- |
 | MoreTube (Android phone) | `com.praiselab.tube` | [`moretube/version.json`](moretube/version.json) | [Releases](../../releases?q=moretube-v) |
 | MoreTube TV (Android / Google TV) | `com.praiselab.tubetv` | [`moretube-tv/version.json`](moretube-tv/version.json) | [Releases](../../releases?q=moretube-tv) |
+| Claude Sessions (Windows, Claude desktop app) | `session-board` (Claude mod) | [`plugin.json`](claude-sessions/mod/session-board/.claude-plugin/plugin.json) | [Install](claude-sessions/) |
 
-**Claude Sessions** (Windows, Claude desktop app): a card at the top right of Claude showing working sessions, recent sessions and reminders. See [`claude-sessions/`](claude-sessions/) for the one-paste install.
+**Claude Sessions** is a card at the top right of the Claude desktop app showing upcoming reminders, sessions working now and recently active sessions. It installs by pasting one prompt into Claude: see [`claude-sessions/`](claude-sessions/).
 
 <a href="claude-sessions/"><img src="claude-sessions/screenshots/dark.png" alt="Claude Sessions card (dark theme)" width="280"></a>
 
