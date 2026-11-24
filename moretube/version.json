@@ -1,6 +1,6 @@
 {
-  "versionCode": 43,
-  "versionName": "6.1",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v6.1/MoreTube.apk",
-  "notes": "- Shorts car mode (settings): each Short plays once, then the next starts by itself, also with the screen off\n- Next and previous on the car, a headset or the lock screen now change Shorts (and work in Curious)\n- Shorts show on the lock screen and the car display with their title\n- Security: MoreTube now only opens YouTube links, only YouTube pages can talk to the app, a name in a room can no longer run as code, relays are checked by name, fake join requests are refused\n- Privacy: sponsor lookups no longer reveal what you watch, and your sign-in is kept out of backups"
+  "versionCode": 44,
+  "versionName": "6.2",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v6.2/MoreTube.apk",
+  "notes": "- The mini player's resize handle is now a clean corner bracket instead of a round button\n- Includes everything in 6.1: Shorts car mode, next / previous on the car and headset, security and privacy fixes"
 }
