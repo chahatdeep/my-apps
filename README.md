@@ -9,6 +9,8 @@ Release builds of my apps, with the version files they check for updates.
 
 **Claude Sessions** (Windows, Claude desktop app): a card at the top right of Claude showing working sessions, recent sessions and reminders. See [`claude-sessions/`](claude-sessions/) for the one-paste install.
 
+<a href="claude-sessions/"><img src="claude-sessions/screenshots/dark.png" alt="Claude Sessions card (dark theme)" width="280"></a>
+
 **Install page:** https://chahatdeep.github.io/my-apps
 
 Each app reads its `version.json` on launch (and from its settings); when the `versionCode` there is newer than the installed one, it offers to download the APK from the matching GitHub release and hands it to Android's installer.
