@@ -56,6 +56,8 @@
   .more .app p { color:var(--dim); font-size:14px; margin-top:2px; }
   .more .app a { color:var(--text); font-size:14px; white-space:nowrap; }
   .more .phone { display:block; width:200px; border-radius:18px; margin:12px 0 4px; box-shadow:0 8px 24px rgba(0,0,0,.4); }
+  .more .shots { display:flex; gap:12px; max-width:624px; margin:12px 0 4px; }
+  .more .shots .phone { flex:1 1 0; min-width:0; width:auto; max-width:200px; margin:0; border-radius:14px; }
   .more .desk { display:block; width:100%; max-width:360px; border-radius:10px; margin:12px 0 4px; box-shadow:0 8px 24px rgba(0,0,0,.4); }
   .more .links { color:var(--dim); font-size:14px; white-space:nowrap; }
   footer { text-align:center; color:#6e6e73; font-size:13px; margin-top:36px; }
@@ -138,7 +140,7 @@ Tell me when it's done and what it changed.</pre>
   <section class="more">
     <h3>More apps</h3>
     <div class="app">
-      <div><b>Horizon</b><p>A home screen for Android phones: clock and agenda, live tiles, folders, and app search. Android 11 or newer.</p><img class="phone" src="horizon/screenshots/home.jpg" alt="Horizon home screen with a clock, weather, music controls and app folders (personal details blurred)" loading="lazy"></div>
+      <div><b>Horizon</b><p>A home screen for Android phones: clock and agenda, live tiles, folders, and app search. Android 11 or newer.</p><div class="shots"><img class="phone" src="horizon/screenshots/home.jpg" alt="Horizon home screen with a clock, weather, music controls and app folders (personal details blurred)" loading="lazy"><img class="phone" src="horizon/screenshots/drawer.jpg" alt="Horizon app library with apps sorted into groups such as Social, Work, Shopping and Travel" loading="lazy"><img class="phone" src="horizon/screenshots/customize.jpg" alt="Horizon Customize Home menu: widgets, Now Playing, Look, wallpaper, custom widgets, settings" loading="lazy"></div></div>
       <span class="links"><a href="https://github.com/chahatdeep/my-apps/releases/download/horizon-v1.0/Horizon-1.0.apk">Download</a> &middot; <a href="https://github.com/chahatdeep/horizon-launcher">Source</a></span>
     </div>
     <div class="app">
