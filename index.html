@@ -48,6 +48,13 @@
   .prompt pre { white-space:pre-wrap; word-break:break-word; font:13px/1.5 ui-monospace, Consolas, monospace; color:var(--text); margin:0 0 12px; }
   .prompt button { font:600 14px/1 -apple-system, "Segoe UI", Roboto, sans-serif; color:var(--text); background:transparent; border:1px solid rgba(255,255,255,.22); border-radius:8px; padding:9px 14px; cursor:pointer; }
   .prompt button:hover { background:rgba(255,255,255,.06); }
+  .more { margin-top:44px; padding-top:28px; border-top:1px solid var(--line); }
+  .more h3 { font-size:19px; font-weight:600; margin-bottom:6px; }
+  .more .app { display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); }
+  .more .app:last-child { border-bottom:0; }
+  .more .app b { font-weight:600; }
+  .more .app p { color:var(--dim); font-size:14px; margin-top:2px; }
+  .more .app a { color:var(--text); font-size:14px; white-space:nowrap; }
   footer { text-align:center; color:#6e6e73; font-size:13px; margin-top:36px; }
   footer a { color:var(--dim); }
   @keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
@@ -122,6 +129,18 @@ Read claude-sessions/README.md, claude-sessions/install.ps1 and the files it ins
 then run it with: powershell -ExecutionPolicy Bypass -File "&lt;that folder&gt;\my-apps-main\claude-sessions\install.ps1"
 Tell me when it's done and what it changed.</pre>
       <button type="button" id="cs-copy">Copy prompt</button>
+    </div>
+  </section>
+
+  <section class="more">
+    <h3>More apps</h3>
+    <div class="app">
+      <div><b>Horizon</b><p>A home screen for Android phones: clock and agenda, live tiles, folders, and app search. Android 11 or newer.</p></div>
+      <a href="https://github.com/chahatdeep/my-apps/releases/download/horizon-v1.0/Horizon-1.0.apk">Download</a>
+    </div>
+    <div class="app">
+      <div><b>Lumi</b><p>Turns photos into lithophanes and 3D-printable models, with exports sized for slicers. Windows.</p></div>
+      <a href="https://chahatdeep.github.io/Lumi/">Website</a>
     </div>
   </section>
 
