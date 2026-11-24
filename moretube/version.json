@@ -1,6 +1,6 @@
 {
-  "versionCode": 40,
-  "versionName": "5.8",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.8/MoreTube.apk",
-  "notes": "A test release to check that new versions are offered automatically. Nothing else changes."
+  "versionCode": 41,
+  "versionName": "5.9",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.9/MoreTube.apk",
+  "notes": "Curious: new computer vision and machine learning channels (OpenCV, Ultralytics, Radiance Fields, DeepLearningAI, Sebastian Raschka and more), fewer space and physics."
 }
