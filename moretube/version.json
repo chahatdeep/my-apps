@@ -1,6 +1,6 @@
 {
-  "versionCode": 41,
-  "versionName": "5.9",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v5.9/MoreTube.apk",
-  "notes": "Curious: new computer vision and machine learning channels (OpenCV, Ultralytics, Radiance Fields, DeepLearningAI, Sebastian Raschka and more), fewer space and physics."
+  "versionCode": 42,
+  "versionName": "6.0",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v6.0/MoreTube.apk",
+  "notes": "- Speed (0.5x to 3x) and Repeat in settings while a video plays\n- Full screen: slide on the left edge for brightness, the right edge for volume\n- Sponsor skipped by mistake? Tap Undo on the note\n- Curious: choose your topics in settings. The channel list was re-checked by hand: about 40 wrong or off-topic channels removed, 28 better ones added\n- New Tips and gestures page in settings\n- Settings now scroll and sit under the video instead of covering it\n- Long listening is no longer paused by Continue watching?"
 }
