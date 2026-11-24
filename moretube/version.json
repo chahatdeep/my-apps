@@ -1,6 +1,6 @@
 {
-  "versionCode": 42,
-  "versionName": "6.0",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v6.0/MoreTube.apk",
-  "notes": "- Speed (0.5x to 3x) and Repeat in settings while a video plays\n- Full screen: slide on the left edge for brightness, the right edge for volume\n- Sponsor skipped by mistake? Tap Undo on the note\n- Curious: choose your topics in settings. The channel list was re-checked by hand: about 40 wrong or off-topic channels removed, 28 better ones added\n- New Tips and gestures page in settings\n- Settings now scroll and sit under the video instead of covering it\n- Long listening is no longer paused by Continue watching?"
+  "versionCode": 43,
+  "versionName": "6.1",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v6.1/MoreTube.apk",
+  "notes": "- Shorts car mode (settings): each Short plays once, then the next starts by itself, also with the screen off\n- Next and previous on the car, a headset or the lock screen now change Shorts (and work in Curious)\n- Shorts show on the lock screen and the car display with their title\n- Security: MoreTube now only opens YouTube links, only YouTube pages can talk to the app, a name in a room can no longer run as code, relays are checked by name, fake join requests are refused\n- Privacy: sponsor lookups no longer reveal what you watch, and your sign-in is kept out of backups"
 }
