@@ -14,6 +14,10 @@ Release builds of my apps, with the version files they check for updates.
 
 <a href="claude-sessions/"><img src="claude-sessions/screenshots/dark.png" alt="Claude Sessions card (dark theme)" width="280"></a>
 
+**Horizon** is a home screen for Android phones: clock and agenda, live tiles, folders, an app library and app search. Source: [chahatdeep/horizon-launcher](https://github.com/chahatdeep/horizon-launcher). Personal details in the screenshots are blurred.
+
+<img src="horizon/screenshots/home.jpg" alt="Horizon home screen with a clock, weather, music controls and app folders" width="200"> <img src="horizon/screenshots/drawer.jpg" alt="Horizon app library with apps sorted into groups such as Social, Work, Shopping and Travel" width="200"> <img src="horizon/screenshots/customize.jpg" alt="Horizon Customize Home menu" width="200">
+
 **Install page:** https://chahatdeep.github.io/my-apps
 
 Each app reads its `version.json` on launch (and from its settings); when the `versionCode` there is newer than the installed one, it offers to download the APK from the matching GitHub release and hands it to Android's installer.
