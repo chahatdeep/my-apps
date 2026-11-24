@@ -1,6 +1,6 @@
 {
-  "versionCode": 44,
-  "versionName": "6.2",
-  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v6.2/MoreTube.apk",
-  "notes": "- The mini player's resize handle is now a clean corner bracket instead of a round button\n- Includes everything in 6.1: Shorts car mode, next / previous on the car and headset, security and privacy fixes"
+  "versionCode": 45,
+  "versionName": "6.3",
+  "apk": "https://github.com/chahatdeep/my-apps/releases/download/moretube-v6.3/MoreTube.apk",
+  "notes": "- Full screen: the video's settings button works again (quality, speed, captions open on top of the video)\n- Back closes that menu first and keeps you in full screen\n- The mini player's resize handle is now a clean corner bracket"
 }
