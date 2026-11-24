@@ -127,7 +127,7 @@ function Until([long]$atMs, [long]$nowMs) {
         <DropShadowEffect BlurRadius="24" ShadowDepth="4" Direction="270" Opacity="0.35" Color="#000000"/>
       </Border.Effect>
       <StackPanel>
-        <Border x:Name="Header" CornerRadius="12,12,0,0" Padding="12,7,6,7" BorderThickness="0,0,0,1">
+        <Border x:Name="Header" CornerRadius="12,12,0,0" Padding="12,5,5,5" BorderThickness="0,0,0,1">
           <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
               <GradientStop Color="#2A2826" Offset="0"/>
@@ -153,7 +153,7 @@ function Until([long]$atMs, [long]$nowMs) {
           </StackPanel>
           </StackPanel>
         </Border>
-        <StackPanel x:Name="Body" Margin="10,4,10,7"/>
+        <StackPanel x:Name="Body" Margin="10,0,10,7"/>
       </StackPanel>
     </Border>
   </Grid>
@@ -459,11 +459,8 @@ function Render {
   if ($script:collapsed) {
     [void]$pills.Children.Add((New-Pill "$($working.Count) working" $C.Working))
     [void]$pills.Children.Add((New-Pill "$($recent.Count) recent" $C.Done))
-  } else {
-    [void]$pills.Children.Add((New-Pill "$($working.Count) working" $C.Working))
-    [void]$pills.Children.Add((New-Pill "$($recent.Count) recent" $C.Done))
-    [void]$pills.Children.Add((New-Pill "$($reminders.Count) reminder$(if ($reminders.Count -ne 1) { 's' })" $C.Remind))
   }
+  # Expanded: no count row in the header; each section title already shows its count.
 
   if ($script:collapsed) { return }
 
@@ -562,7 +559,7 @@ function Set-Collapsed([bool]$value) {
   $header.CornerRadius = $(if ($value) { Rad 12 } else { [System.Windows.CornerRadius]::new(12, 12, 0, 0) })
   $card.CornerRadius = Rad 12
   # Minimized: one slim row - spark, three count badges, expand button.
-  $header.Padding = $(if ($value) { Thk 12 6 6 6 } else { Thk 12 6 6 7 })
+  $header.Padding = $(if ($value) { Thk 12 5 5 5 } else { Thk 12 5 5 5 })
   $header.BorderThickness = $(if ($value) { Thk 0 0 0 0 } else { Thk 0 0 0 1 })
   $titleBlock.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
   $spark.Visibility = $(if ($value) { 'Visible' } else { 'Collapsed' })
@@ -571,7 +568,7 @@ function Set-Collapsed([bool]$value) {
   # Minimized: the badges move up beside the spark and the card shrinks to fit.
   $from = $(if ($value) { $bottomHost } else { $topHost }); $to = $(if ($value) { $topHost } else { $bottomHost })
   if ($from.Children.Contains($pills)) { $from.Children.Remove($pills); [void]$to.Children.Add($pills) }
-  $bottomHost.Visibility = $(if ($value) { 'Collapsed' } else { 'Visible' })
+  $bottomHost.Visibility = 'Collapsed'   # counts show only in the minimized bar
   if ($value) { $window.SizeToContent = 'WidthAndHeight' } else { $window.SizeToContent = 'Height'; $window.Width = $Width }
   $minBtn.Content = $(if ($value) { $Glyph.Down } else { $Glyph.Dash })
   $minBtn.ToolTip = $(if ($value) { 'Expand' } else { 'Minimize' })
