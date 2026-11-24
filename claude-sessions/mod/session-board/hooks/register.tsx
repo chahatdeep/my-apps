@@ -136,14 +136,13 @@ async function refresh($: any): Promise<void> {
 }
 
 // Starts the "Claude Sessions" card if it isn't running (it allows one copy).
-// `start` detaches it, so this returns at once.
+// SessionBoard.vbs runs it with no console window: on Windows 11 a plain
+// powershell.exe start opens a Windows Terminal tab, and closing that tab
+// would close the card. wscript returns as soon as the card has started.
 async function launchWidget($: any): Promise<void> {
   try {
-    await $.process.run(
-      ['cmd.exe', '/c', 'start', '', 'powershell.exe', '-STA', '-NoProfile', '-ExecutionPolicy', 'Bypass',
-        '-WindowStyle', 'Hidden', '-File', `${await boardDir($)}/SessionBoard.ps1`],
-      { timeoutMs: 10_000 },
-    )
+    const vbs = `${await boardDir($)}/SessionBoard.vbs`.split('/').join('\\')
+    await $.process.run(['wscript.exe', vbs], { timeoutMs: 10_000 })
   } catch {
     // The card is optional; nothing else depends on it.
   }

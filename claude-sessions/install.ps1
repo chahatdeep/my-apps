@@ -1,6 +1,6 @@
 # Installs Claude Sessions for the current Windows user.
 #
-#   1. Copies the card (app\SessionBoard.ps1) to   %USERPROFILE%\.claude\session-board\
+#   1. Copies the card (app\SessionBoard.ps1 + its launcher .vbs) to %USERPROFILE%\.claude\session-board\
 #   2. Copies the Claude mod (mod\session-board) to %USERPROFILE%\.claude\mods\session-board\
 #   3. Adds that mod folder to CLAUDE_CODE_PLUGIN_DIRS in %USERPROFILE%\.claude\settings.json
 #      (a backup of settings.json is saved next to it first), so every Claude session loads it
@@ -16,7 +16,7 @@ $appDir = Join-Path $claudeHome 'session-board'
 $modDir = Join-Path $claudeHome 'mods\session-board'
 $settingsPath = Join-Path $claudeHome 'settings.json'
 
-if (-not (Test-Path (Join-Path $src 'app\SessionBoard.ps1')) -or -not (Test-Path (Join-Path $src 'mod\session-board\.claude-plugin\plugin.json'))) {
+if (-not (Test-Path (Join-Path $src 'app\SessionBoard.vbs')) -or -not (Test-Path (Join-Path $src 'mod\session-board\.claude-plugin\plugin.json'))) {
   throw "Run install.ps1 from the claude-sessions folder (it needs the app and mod folders next to it)."
 }
 
@@ -30,6 +30,7 @@ Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" |
 # 1-2. Files.
 New-Item -ItemType Directory -Force -Path $appDir | Out-Null
 Copy-Item -LiteralPath (Join-Path $src 'app\SessionBoard.ps1') -Destination $appDir -Force
+Copy-Item -LiteralPath (Join-Path $src 'app\SessionBoard.vbs') -Destination $appDir -Force
 if (Test-Path $modDir) { Remove-Item -LiteralPath $modDir -Recurse -Force }
 New-Item -ItemType Directory -Force -Path (Split-Path $modDir) | Out-Null
 Copy-Item -LiteralPath (Join-Path $src 'mod\session-board') -Destination (Split-Path $modDir) -Recurse -Force
@@ -60,9 +61,9 @@ Write-Host "  settings.json: CLAUDE_CODE_PLUGIN_DIRS includes the mod (backup: s
 $lnk = Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs\Claude Sessions.lnk'
 $shell = New-Object -ComObject WScript.Shell
 $sc = $shell.CreateShortcut($lnk)
-$sc.TargetPath = 'powershell.exe'
-$sc.Arguments = "-STA -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$appDir\SessionBoard.ps1`""
-$sc.WindowStyle = 7
+# wscript + SessionBoard.vbs: starts the card with no console window
+$sc.TargetPath = 'wscript.exe'
+$sc.Arguments = "`"$appDir\SessionBoard.vbs`""
 $sc.Description = 'Show the Claude Sessions card on the Claude window'
 $claudeExe = Get-Process -Name claude -ErrorAction SilentlyContinue |
   Where-Object { $_.Path -like '*WindowsApps*Claude*' -or $_.MainWindowHandle -ne [IntPtr]::Zero } |
@@ -71,7 +72,7 @@ if ($claudeExe) { $sc.IconLocation = "$claudeExe,0" }
 $sc.Save()
 Write-Host '  Start menu: "Claude Sessions"'
 
-Start-Process powershell.exe -ArgumentList '-STA', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-WindowStyle', 'Hidden', '-File', "`"$appDir\SessionBoard.ps1`""
+Start-Process wscript.exe -ArgumentList "`"$appDir\SessionBoard.vbs`""
 
 Write-Host ''
 Write-Host 'Done. The card sits at the top right of the Claude desktop window.'

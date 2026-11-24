@@ -36,7 +36,7 @@ powershell -ExecutionPolicy Bypass -File .\my-apps-main\claude-sessions\install.
 
 | What | Where |
 | --- | --- |
-| The card (one PowerShell + WPF script) | `%USERPROFILE%\.claude\session-board\SessionBoard.ps1` |
+| The card (a PowerShell + WPF script, and a small launcher that starts it with no console window) | `%USERPROFILE%\.claude\session-board\` (`SessionBoard.ps1`, `SessionBoard.vbs`) |
 | A Claude Code mod that writes the card's data every 20 s | `%USERPROFILE%\.claude\mods\session-board\` |
 | One setting so every Claude session loads that mod | `env.CLAUDE_CODE_PLUGIN_DIRS` in `%USERPROFILE%\.claude\settings.json` (a backup is saved as `settings.json.bak-claude-sessions`) |
 | A Start menu shortcut | "Claude Sessions" |
