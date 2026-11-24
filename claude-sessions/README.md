@@ -8,7 +8,7 @@ Click a session to open it. Right-click a recent session to hide it; it reappear
 | --- | --- | --- |
 | ![Dark](screenshots/dark.png) | ![Light](screenshots/light.png) | ![Minimized](screenshots/minimized.png) |
 
-It uses Claude's light or dark setting (or Windows' when Claude is set to System) and changes when that does. The card moves with the Claude window, stays above Claude but not above other apps, and hides when Claude is minimized. The – button shrinks it to one line of counts, and each section folds with its arrow. If you close it, it comes back the next time a Claude session starts, when you type `/sessions`, or from the Start menu.
+It uses Claude's light or dark setting (or Windows' when Claude is set to System) and changes when that does. The card moves with the Claude window, stays above Claude but not above other apps, and hides when Claude is minimized. The two A buttons (or Ctrl + scroll over the card) make the whole card smaller or larger, text included, and it remembers the size. The – button shrinks it to one line of counts, and each section folds with its arrow. If you close it, it comes back the next time a Claude session starts, when you type `/sessions`, or from the Start menu.
 
 ## Install by pasting a prompt into Claude
 

@@ -5,7 +5,7 @@
 # (%USERPROFILE%\.claude\mods\session-board), loaded in every Claude session.
 # Run with: powershell.exe -STA -NoProfile -WindowStyle Hidden -File SessionBoard.ps1
 
-param([string]$Snapshot = '', [switch]$SnapshotMinimized, [string]$SnapshotTheme = '')  # render the card to this PNG and exit (for checking the look)
+param([string]$Snapshot = '', [switch]$SnapshotMinimized, [string]$SnapshotTheme = '', [double]$SnapshotZoom = 0)  # render the card to this PNG and exit (for checking the look)
 
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
@@ -121,7 +121,7 @@ function Until([long]$atMs, [long]$nowMs) {
         Topmost="False" ShowInTaskbar="False" ResizeMode="NoResize"
         FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="13"
         TextOptions.TextFormattingMode="Display">
-  <Grid Margin="14">
+  <Grid x:Name="Root" Margin="14">
     <Border x:Name="Card" CornerRadius="12" Background="$($C.Card)" BorderThickness="1">
       <Border.Effect>
         <DropShadowEffect BlurRadius="24" ShadowDepth="4" Direction="270" Opacity="0.35" Color="#000000"/>
@@ -137,6 +137,8 @@ function Until([long]$atMs, [long]$nowMs) {
           <StackPanel>
           <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Top">
+              <Button x:Name="ZoomOutBtn" Width="22" Height="22" ToolTip="Smaller (Ctrl + scroll also works)" Cursor="Hand" FontSize="10"/>
+              <Button x:Name="ZoomInBtn" Width="22" Height="22" Margin="1,0,6,0" ToolTip="Larger (Ctrl + scroll also works)" Cursor="Hand"/>
               <Button x:Name="MinBtn" Width="22" Height="22" ToolTip="Minimize" Cursor="Hand"/>
               <Button x:Name="CloseBtn" Width="22" Height="22" Margin="3,0,0,0" ToolTip="Close" Cursor="Hand"/>
             </StackPanel>
@@ -172,6 +174,9 @@ $bottomHost = $window.FindName('BottomHost')
 $spark = $window.FindName('Spark')
 $minBtn = $window.FindName('MinBtn')
 $closeBtn = $window.FindName('CloseBtn')
+$zoomOutBtn = $window.FindName('ZoomOutBtn')
+$zoomInBtn = $window.FindName('ZoomInBtn')
+$root = $window.FindName('Root')
 
 # Round, flat header buttons, styled from the current palette.
 function Set-HeaderButtonStyle {
@@ -199,6 +204,8 @@ function Set-HeaderButtonStyle {
 "@)
   $minBtn.Style = $style
   $closeBtn.Style = $style
+  $zoomOutBtn.Style = $style
+  $zoomInBtn.Style = $style
 }
 
 # Paint the parts drawn once (header, card, shadow); Render paints the rest.
@@ -233,14 +240,29 @@ function Update-Theme {
 
 Set-ThemeChrome
 $closeBtn.Content = $Glyph.Cross
+$zoomOutBtn.Content = 'A'
+$zoomInBtn.Content = 'A'
+$zoomInBtn.FontSize = 14
 
 $script:collapsed = $false
+$script:zoom = 1.0   # whole-card scale: sizes and fonts together
+
+# Scales the whole card (layout and text) and keeps the window wide enough for it.
+function Set-Zoom([double]$z) {
+  $z = [math]::Round([math]::Min(1.6, [math]::Max(0.8, $z)), 2)
+  $script:zoom = $z
+  $root.LayoutTransform = New-Object System.Windows.Media.ScaleTransform($z, $z)
+  $window.Width = $Width * $z
+  $zoomOutBtn.IsEnabled = $z -gt 0.8
+  $zoomInBtn.IsEnabled = $z -lt 1.6
+  Save-WindowState
+}
 $script:closedGroups = @{}
 $script:hidden = @{}   # session id -> last activity (ms) when removed from Recent
 
 function Save-WindowState {
   if ($Snapshot) { return }  # a snapshot run leaves the real window's state alone
-  @{ collapsed = $script:collapsed; closedGroups = @($script:closedGroups.Keys); hidden = $script:hidden } | ConvertTo-Json | Set-Content -LiteralPath $StateFile -Encoding UTF8
+  @{ collapsed = $script:collapsed; closedGroups = @($script:closedGroups.Keys); hidden = $script:hidden; zoom = $script:zoom } | ConvertTo-Json | Set-Content -LiteralPath $StateFile -Encoding UTF8
 }
 
 function New-Text([string]$text, [string]$color, [double]$size = 13, [string]$weight = 'Normal') {
@@ -570,7 +592,7 @@ function Set-Collapsed([bool]$value) {
   if ($bottomHost.Children.Contains($pills)) { $bottomHost.Children.Remove($pills); [void]$topHost.Children.Add($pills) }
   $pills.Visibility = $(if ($value) { 'Visible' } else { 'Collapsed' })
   $bottomHost.Visibility = 'Collapsed'
-  $window.SizeToContent = 'Height'; $window.Width = $Width
+  $window.SizeToContent = 'Height'; $window.Width = $Width * $script:zoom
   $minBtn.Content = $(if ($value) { $Glyph.Down } else { $Glyph.Dash })
   $minBtn.ToolTip = $(if ($value) { 'Expand' } else { 'Minimize' })
   Render
@@ -642,6 +664,16 @@ if ($Snapshot) {
 }
 
 $minBtn.Add_Click({ Set-Collapsed (-not $script:collapsed) })
+$zoomOutBtn.Add_Click({ Set-Zoom ($script:zoom - 0.1) })
+$zoomInBtn.Add_Click({ Set-Zoom ($script:zoom + 0.1) })
+# Ctrl + mouse wheel over the card also changes the size.
+$window.Add_PreviewMouseWheel({
+    param($sender, $e)
+    if ([System.Windows.Input.Keyboard]::Modifiers -band [System.Windows.Input.ModifierKeys]::Control) {
+      Set-Zoom ($script:zoom + $(if ($e.Delta -gt 0) { 0.1 } else { -0.1 }))
+      $e.Handled = $true
+    }
+  })
 $closeBtn.Add_Click({ $window.Close() })
 
 $timer = New-Object System.Windows.Threading.DispatcherTimer
@@ -650,6 +682,7 @@ $script:menuOpen = $false
 $timer.Add_Tick({ if (-not $script:menuOpen) { try { [void](Update-Theme); Render } catch { } } })
 $timer.Start()
 
+Set-Zoom $(if ($SnapshotZoom -gt 0) { $SnapshotZoom } elseif ($saved -and $saved.zoom) { [double]$saved.zoom } else { 1.0 })
 Set-Collapsed $(if ($Snapshot) { [bool]$SnapshotMinimized } else { [bool]($saved -and $saved.collapsed) })
 [void]$window.ShowDialog()
 $mutex.ReleaseMutex()
