@@ -144,7 +144,7 @@ function Until([long]$atMs, [long]$nowMs) {
             </StackPanel>
             <TextBlock x:Name="Spark" DockPanel.Dock="Left" Text="" FontSize="1"
                        FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,8,0" Visibility="Collapsed"/>
-            <StackPanel x:Name="TopHost" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel x:Name="TopHost" Orientation="Horizontal" VerticalAlignment="Stretch" Background="Transparent" Cursor="Hand">
               <StackPanel x:Name="TitleBlock" VerticalAlignment="Center">
                 <TextBlock x:Name="Title" FontSize="13.5" FontWeight="SemiBold" VerticalAlignment="Center"><Run x:Name="TitleSpark" Text=""/><Run x:Name="TitleText" Text="Claude Sessions"/><Run Text="  "/><Run x:Name="Subtitle" FontSize="11" FontWeight="Normal"/></TextBlock>
               </StackPanel>
@@ -599,6 +599,7 @@ function Set-Collapsed([bool]$value) {
   $window.SizeToContent = 'Height'; $window.Width = $Width * $script:zoom
   $minBtn.Content = $(if ($value) { $Glyph.Down } else { $Glyph.Dash })
   $minBtn.ToolTip = $(if ($value) { 'Expand' } else { 'Minimize' })
+  $topHost.ToolTip = $minBtn.ToolTip
   Render
   Save-WindowState
 }
@@ -668,6 +669,8 @@ if ($Snapshot) {
 }
 
 $minBtn.Add_Click({ Set-Collapsed (-not $script:collapsed) })
+# The title area (name, date or counts) toggles too.
+$topHost.Add_MouseLeftButtonUp({ Set-Collapsed (-not $script:collapsed) })
 $zoomOutBtn.Add_Click({ Set-Zoom ($script:zoom - 0.1) })
 $zoomInBtn.Add_Click({ Set-Zoom ($script:zoom + 0.1) })
 # Ctrl + mouse wheel over the card also changes the size.

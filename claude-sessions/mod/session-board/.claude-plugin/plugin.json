@@ -1,6 +1,6 @@
 {
   "name": "session-board",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Claude Sessions: keeps the top-right card's list of working sessions, recent sessions and reminders up to date",
   "types": "./types/index.d.ts",
   "license": "MIT"
