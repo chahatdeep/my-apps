@@ -680,6 +680,24 @@ $window.Add_PreviewMouseWheel({
   })
 $closeBtn.Add_Click({ $window.Close() })
 
+# Closing fires only for a real close (the close button, Alt+F4, a snapshot).
+# When Claude replaces or closes its main window, Windows destroys this owned
+# window without Closing, and ShowDialog never returns: the process would linger
+# with no window and hold the single-copy mutex, so nothing could reopen the card.
+# So on Closed, always end the process; if nobody asked to close, start a fresh
+# copy first, which finds Claude's new window (or waits for Claude to reopen).
+$script:closeRequested = $false
+$window.Add_Closing({ $script:closeRequested = $true })
+$window.Add_Closed({
+    try { $follow.Stop(); $timer.Stop() } catch { }
+    try { $mutex.ReleaseMutex() } catch { }
+    if (-not $Snapshot -and -not $script:closeRequested) {
+      $vbs = Join-Path $PSScriptRoot 'SessionBoard.vbs'
+      if (Test-Path -LiteralPath $vbs) { Start-Process wscript.exe -ArgumentList "`"$vbs`"" }
+    }
+    [Environment]::Exit(0)
+  })
+
 $timer = New-Object System.Windows.Threading.DispatcherTimer
 $timer.Interval = [TimeSpan]::FromSeconds(5)
 $script:menuOpen = $false
@@ -689,5 +707,5 @@ $timer.Start()
 Set-Zoom $(if ($SnapshotZoom -gt 0) { $SnapshotZoom } elseif ($saved -and $saved.zoom) { [double]$saved.zoom } else { 1.0 })
 Set-Collapsed $(if ($Snapshot) { [bool]$SnapshotMinimized } else { [bool]($saved -and $saved.collapsed) })
 [void]$window.ShowDialog()
-$mutex.ReleaseMutex()
+try { $mutex.ReleaseMutex() } catch { }
 
