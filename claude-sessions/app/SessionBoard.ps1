@@ -533,7 +533,12 @@ function Render {
   }
   $ordered = @($families.Values | Sort-Object { - $_.newest })
   foreach ($f in $(if ($showRecent) { $ordered } else { @() })) {
-    [void]$body.Children.Add((New-SessionRow $f.root $nowMs 'done' 0 $true))
+    # A parent row shows its family's newest time, so the ages read in order down the list.
+    $shown = $f.root
+    if ($f.kids.Count -gt 0 -and $f.newest -gt [double]$f.root.lastActivityAt) {
+      $shown = $f.root.PSObject.Copy(); $shown.lastActivityAt = $f.newest
+    }
+    [void]$body.Children.Add((New-SessionRow $shown $nowMs 'done' 0 $true))
     foreach ($k in @($f.kids | Sort-Object { - [double]$_.lastActivityAt })) {
       [void]$body.Children.Add((New-ChildRow $k $nowMs 0))
     }
