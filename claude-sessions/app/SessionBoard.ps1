@@ -518,13 +518,23 @@ function Render {
   [void]$body.Children.Add((New-SectionTitle 'Recent' $C.Done $recent.Count 'section:recent'))
   $showRecent = -not $script:closedGroups.ContainsKey('section:recent')
   if ($showRecent -and $recent.Count -eq 0) { [void]$body.Children.Add((New-Empty 'No sessions in the last day.')) }
-  $recentIds = @{}; foreach ($s in $recent) { $recentIds[[string]$s.id] = $true }
-  # Most recent first; a child session is drawn under its parent.
-  foreach ($s in $(if ($showRecent) { $recent } else { @() })) {
-    $parent = [string]$s.parentId
-    if ($parent -and $recentIds.ContainsKey($parent)) { continue }
-    [void]$body.Children.Add((New-SessionRow $s $nowMs 'done' 0 $true))
-    foreach ($k in @($recent | Where-Object { [string]$_.parentId -eq [string]$s.id })) {
+  $recentById = @{}; foreach ($s in $recent) { $recentById[[string]$s.id] = $s }
+  # A child session is drawn under its top-most ancestor that is also in Recent.
+  # Families are ordered by their newest member, so a parent moves up when one of
+  # its child sessions was just active; inside a family, children are newest first.
+  $families = [ordered]@{}
+  foreach ($s in $recent) {
+    $root = $s; $guard = 0
+    while ($root.parentId -and $recentById.ContainsKey([string]$root.parentId) -and $guard -lt 10) { $root = $recentById[[string]$root.parentId]; $guard++ }
+    $rid = [string]$root.id
+    if (-not $families.Contains($rid)) { $families[$rid] = @{ root = $root; kids = New-Object System.Collections.ArrayList; newest = 0.0 } }
+    if ([string]$s.id -ne $rid) { [void]$families[$rid].kids.Add($s) }
+    $families[$rid].newest = [math]::Max($families[$rid].newest, [double]$s.lastActivityAt)
+  }
+  $ordered = @($families.Values | Sort-Object { - $_.newest })
+  foreach ($f in $(if ($showRecent) { $ordered } else { @() })) {
+    [void]$body.Children.Add((New-SessionRow $f.root $nowMs 'done' 0 $true))
+    foreach ($k in @($f.kids | Sort-Object { - [double]$_.lastActivityAt })) {
       [void]$body.Children.Add((New-ChildRow $k $nowMs 0))
     }
   }
